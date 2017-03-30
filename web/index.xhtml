@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <meta charset="utf-8"/>
+        <link rel="icon" href="Images/logoSeniorDesign.png"/>
+        <title>ELCD</title>
+        <link href="Style Sheets/index.css" rel="stylesheet" type="text/css"/>
+        <script>var __adobewebfontsappname__ = "dreamweaver";</script><script src="http://use.edgefonts.net/iceberg:n4:default.js" type="text/javascript"></script>
+    </h:head>
+    <body>
+        <f:view>
+            <header>
+                <h1>ELCD</h1>
+                <img src="Images/logoSeniorDesign.png" width="150" height="150" alt=""/>
+                <h5>Early Lung Cancer Detection System</h5>
+            </header>
+            <nav>
+                <a href="Web Pages/about.xhtml" class="navAbout">About</a>
+                <a href="Web Pages/prevention.xhtml" class="navPrevention">Prevention</a>
+                <a href="Web Pages/contact.xhtml" class="navContact">Contact</a>
+                <a href="Web Pages/quickAnalysis.xhtml" class="navQuickAnalysis">Quick Analysis</a>
+                <a href="Web Pages/help.xhtml" class="navHelp">Help</a>
+            </nav>
+            <h5>Login</h5>
+            <center>
+                <h:form>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>Email:</td>
+                                <td><h:inputText id="email" value="#{authentification.email}" required="true"/></td>
+                            </tr>
+                            <tr>
+                                <td>Password:</td>
+                                <td><h:inputSecret id="password" value="#{authentification.password}" required="true"/></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br/><h:outputText class="error" value="#{authentification.errorMsg}"/>
+                    <br/><h:commandButton class="button" id="loginButton" value="Enter" action="#{authentification.enterELCD}"/>
+                </h:form>
+            </center>
+            <footer>
+                CMP 491 - Senior Design Project - American University of Sharjah © 2017
+            </footer>
+        </f:view>
+    </body>
+</html>

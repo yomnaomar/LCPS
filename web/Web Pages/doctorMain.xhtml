@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <meta charset="utf-8"/>
+        <link rel="icon" href="Images/logoSeniorDesign.png"/>
+        <title>ELCD - Home</title>
+        <link href="../Style Sheets/doctorMain.css" rel="stylesheet" type="text/css"/>
+        <script>var __adobewebfontsappname__ = "dreamweaver"</script><script src="http://use.edgefonts.net/iceberg:n4:default.js" type="text/javascript"></script>
+    </h:head>
+    <h:body>
+        <f:view>
+            <header><a href="doctorMain.xhtml"><img src="../Images/logoSeniorDesign.png" width="150" height="150" alt=""/><h3>Welcome Dr. <h:outputText value="#{authentification.firstname}"/>!</h3></a></header>
+            <nav><a href="doctorMain.xhtml" class="navHome">Home</a></nav>
+            <div>
+                <center>
+                    <h:dataTable value="#{doctorpatients.patients}" var="patient" headerClass="tableheader" rowClasses="oddrow, evenrow">
+                        <h:column>
+                            <f:facet name="header">Patient ID</f:facet>
+                            <h:outputText value="#{patient.userID}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Name</f:facet>
+                            <h:outputText value="#{patient.name}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Sex</f:facet>
+                            <h:outputText value="#{patient.sex}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Age</f:facet>
+                            <h:outputText value="#{patient.age}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Hospital</f:facet>
+                            <h:outputText value="#{patient.hospitalName}"/>
+                        </h:column>
+                        <h:column>
+                            <h:form>
+                                <h:commandButton class="button" id="viewPatient" value="View Patient" action="#{doctorpatients.goToDoctorPatientView}">
+                                    <f:param name="selectedPatientID" value="#{patient.userID}"/>
+                                </h:commandButton>
+                            </h:form>
+                        </h:column>
+                    </h:dataTable>
+                    <h:outputText value="#{doctorpatients.errorMsg}"/>
+                </center>
+            </div>
+            <footer>CMP 491 - Senior Design Project - American University of Sharjah © 2017</footer>
+        </f:view>
+    </h:body>
+</html>
