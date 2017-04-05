@@ -7,15 +7,53 @@
     <head>
         <meta charset="utf-8"/>
         <link rel="icon" href="Images/logoSeniorDesign.png"/>
-        <title>ELCD - Patient YYY's Analysis</title>
-        <script>var __adobewebfontsappname__ = "dreamweaver"</script><script src="http://use.edgefonts.net/iceberg:n4:default.js" type="text/javascript"></script>
+        <title>ELCD - Patient #{doctorpatients.patientName}'s Analysis</title>
         <link href="../Style Sheets/doctorPatientAI.css" rel="stylesheet" type="text/css"/>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.2/modernizr.js"></script>
+        <script>
+            $(window).load(function () {
+                $(".se-pre-con").fadeOut("slow");
+                ;
+            });
+        </script>
+        <script>var __adobewebfontsappname__ = "dreamweaver"</script><script src="http://use.edgefonts.net/iceberg:n4:default.js" type="text/javascript"></script>
     </head>
-    <body>
-        <header><a href="doctorMain.xhtml"><img src="../Images/logoSeniorDesign.png" width="150" height="150" alt=""/><h3>Patient YYY's Analysis</h3></a></header>
-        <nav><a href="doctorMain.xhtml" class="navHome">Home</a> &gt; <a href="doctorPatientAI.xhtml" class="navHome">AI Analysis</a></nav>
-        <div>
-        </div>
-        <footer>CMP 491 - Senior Design Project - American University of Sharjah © 2017</footer>
-    </body>
+    <h:body>
+        <div class="se-pre-con"></div>
+        <f:view>
+            <div>
+                <center>
+                    <header><a href="doctorMain.xhtml"><img src="../Images/logoSeniorDesign.png" width="150" height="150" alt=""/><h3>Patient <h:outputText value="#{doctorpatients.patientName}"/>'s Analysis</h3></a></header>
+                    <nav><a href="doctorMain.xhtml" class="navHome">Home</a> &gt; <a href="doctorPatientAI.xhtml" class="navHome">AI Analysis</a></nav>
+                    <h:form>
+                        <h3>Databases Available To Use:</h3>
+                        <h:dataTable border="1"  var="files" value="#{manageFiles.files}">                   
+                            <h:column>
+                                <f:facet name="header">Name of Database</f:facet>
+                                <h:outputText value="#{files.filename}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">File Type</f:facet>
+                                <h:outputText value="#{files.filetype}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Predicts</f:facet>
+                                <h:outputText value="#{files.predicts}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Description</f:facet>
+                                <h:outputText value="#{files.description}"/>
+                            </h:column>
+                            <h:column>
+                                <h:commandButton value="Analyze Database" action="#{manageFiles.chosen(files.ID)}"/>
+                            </h:column>
+                        </h:dataTable>
+                        <h:commandButton value="Upload New Database" action="doctorUploadDB.xhtml"/>  
+                    </h:form>
+                    <footer>CMP 491 - Senior Design Project - American University of Sharjah © 2017</footer>
+                </center>
+            </div>
+        </f:view>
+    </h:body>
 </html>

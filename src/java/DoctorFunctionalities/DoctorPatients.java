@@ -32,9 +32,29 @@ public class DoctorPatients {
         DoctorPatients.patientID = 0;
         try {
             // To get Patient
-            DriverManager.registerDriver(new com.microsoft.sqlserver.jdbc.SQLServerDriver());
+            DriverManager.registerDriver(new org.apache.derby.jdbc.ClientDriver());
             crs = RowSetProvider.newFactory().createCachedRowSet();
             crs.setUrl(DatabaseAccess.DBurl);
+            crs.setUsername(DatabaseAccess.DBuser);
+            crs.setPassword(DatabaseAccess.DBpass);
+        } catch (SQLException ex) {
+            this.errorMsg = "Error in accessing the database: Please try again later";
+            Logger.getLogger(DoctorPatients.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void init() {
+        this.patients = new ArrayList<>();
+        this.errorMsg = "";
+        this.patientName = "";
+        DoctorPatients.patientID = 0;
+        try {
+            // To get Patient
+            DriverManager.registerDriver(new org.apache.derby.jdbc.ClientDriver());
+            crs = RowSetProvider.newFactory().createCachedRowSet();
+            crs.setUrl(DatabaseAccess.DBurl);
+            crs.setUsername(DatabaseAccess.DBuser);
+            crs.setPassword(DatabaseAccess.DBpass);
         } catch (SQLException ex) {
             this.errorMsg = "Error in accessing the database: Please try again later";
             Logger.getLogger(DoctorPatients.class.getName()).log(Level.SEVERE, null, ex);
@@ -46,9 +66,11 @@ public class DoctorPatients {
         this.errorMsg = "";
         try {
             // To get ELCDuser
-            DriverManager.registerDriver(new com.microsoft.sqlserver.jdbc.SQLServerDriver());
+            DriverManager.registerDriver(new org.apache.derby.jdbc.ClientDriver());
             CachedRowSet crs2 = RowSetProvider.newFactory().createCachedRowSet();
             crs2.setUrl(DatabaseAccess.DBurl);
+            crs2.setUsername(DatabaseAccess.DBuser);
+            crs2.setPassword(DatabaseAccess.DBpass);
             // Get the Doctor's ID
             int doctorID = Authentification.getUserID();
             crs.setCommand("SELECT * FROM Patient WHERE doctorID = ?");
@@ -92,7 +114,7 @@ public class DoctorPatients {
     }
 
     public void setPatientID(int patientID) {
-        this.patientID = patientID;
+        DoctorPatients.patientID = patientID;
     }
 
     public String getErrorMsg() {

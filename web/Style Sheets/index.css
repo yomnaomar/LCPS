@@ -1,135 +1,148 @@
 @charset "utf-8";
 body {
-	background-image: url(../Images/siteBackgroud.png);
-	background-size: cover;
-	background-repeat: no-repeat;
-	background-attachment: fixed;
+    background-image: url(../Images/siteBackgroud.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 body header {
-	text-align: center;
-	font-family: iceberg;
-	font-style: normal;
-	font-weight: 400;
-	font-size: xx-large;
-	margin-bottom: 2em;
+    text-align: center;
+    font-family: iceberg;
+    font-style: normal;
+    font-weight: 400;
+    font-size: xx-large;
+    margin-bottom: 2em;
 }
 body header img {
-	margin-top: -1em;
-	margin-bottom: -1.5em;
+    margin-top: -1em;
+    margin-bottom: -1.5em;
 }
 body nav {
-	font-family: iceberg;
-	font-style: normal;
-	font-weight: 400;
-	text-align: center;
-	font-size: large;
-	background-color: #000000;
+    font-family: iceberg;
+    font-style: normal;
+    font-weight: 400;
+    text-align: center;
+    font-size: large;
+    background-color: #000000;
 }
 body nav a {
-	color: #48A1AF;
-	font-weight: bold;
-	text-decoration: none;
-	margin-left: 2%;
-	margin-right: 2%;
-	padding-top: 55px;
-	padding-left: 10px;
-	padding-right: 10px;
+    color: #48A1AF;
+    font-weight: bold;
+    text-decoration: none;
+    margin-left: 2%;
+    margin-right: 2%;
+    padding-top: 55px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 .navAbout {
-	background-image: url(../Images/iconAbout.png);
-	background-size: contain;
-	background-repeat: no-repeat;
-	background-position: center 35px;
-	-webkit-transition: all 0.5s ease-in-out 0s;
-	-o-transition: all 0.5s ease-in-out 0s;
-	transition: all 0.5s ease-in-out 0s;
+    background-image: url(../Images/iconAbout.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center 35px;
+    -webkit-transition: all 0.5s ease-in-out 0s;
+    -o-transition: all 0.5s ease-in-out 0s;
+    transition: all 0.5s ease-in-out 0s;
 }
 .navPrevention {
-	background-image: url(../Images/iconPrevention.png);
-	background-size: contain;
-	background-repeat: no-repeat;
-	background-position: center 35px;
-	-webkit-transition: all 0.5s ease-in-out 0s;
-	-o-transition: all 0.5s ease-in-out 0s;
-	transition: all 0.5s ease-in-out 0s;
+    background-image: url(../Images/iconPrevention.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center 35px;
+    -webkit-transition: all 0.5s ease-in-out 0s;
+    -o-transition: all 0.5s ease-in-out 0s;
+    transition: all 0.5s ease-in-out 0s;
 }
 .navContact {
-	background-image: url(../Images/iconContact.png);
-	background-size: contain;
-	background-repeat: no-repeat;
-	background-position: center 35px;
-	-webkit-transition: all 0.5s ease-in-out 0s;
-	-o-transition: all 0.5s ease-in-out 0s;
-	transition: all 0.5s ease-in-out 0s;
+    background-image: url(../Images/iconContact.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center 35px;
+    -webkit-transition: all 0.5s ease-in-out 0s;
+    -o-transition: all 0.5s ease-in-out 0s;
+    transition: all 0.5s ease-in-out 0s;
 }
 .navQuickAnalysis {
-	background-image: url(../Images/iconQuickAnalysis.png);
-	background-size: contain;
-	background-repeat: no-repeat;
-	background-position: center 35px;
-	-webkit-transition: all 0.5s ease-in-out 0s;
-	-o-transition: all 0.5s ease-in-out 0s;
-	transition: all 0.5s ease-in-out 0s;
+    background-image: url(../Images/iconQuickAnalysis.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center 35px;
+    -webkit-transition: all 0.5s ease-in-out 0s;
+    -o-transition: all 0.5s ease-in-out 0s;
+    transition: all 0.5s ease-in-out 0s;
 }
 .navHelp {
-	background-image: url(../Images/iconHelp.png);
-	background-size: contain;
-	background-repeat: no-repeat;
-	background-position: center 35px;
-	-webkit-transition: all 0.5s ease-in-out 0s;
-	-o-transition: all 0.5s ease-in-out 0s;
-	transition: all 0.5s ease-in-out 0s;
+    background-image: url(../Images/iconHelp.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center 35px;
+    -webkit-transition: all 0.5s ease-in-out 0s;
+    -o-transition: all 0.5s ease-in-out 0s;
+    transition: all 0.5s ease-in-out 0s;
 }
 .navAbout:hover {
-	background-position: center 0px;
-	color: #FFFFFF;
+    background-position: center 0px;
+    color: #FFFFFF;
 }
 .navPrevention:hover {
-	background-position: center 0px;
-	color: #FFFFFF;
+    background-position: center 0px;
+    color: #FFFFFF;
 }
 .navContact:hover {
-	background-position: center 0px;
-	color: #FFFFFF;
+    background-position: center 0px;
+    color: #FFFFFF;
 }
 .navQuickAnalysis:hover {
-	background-position: center 0px;
-	color: #FFFFFF;
+    background-position: center 0px;
+    color: #FFFFFF;
 }
 .navHelp:hover {
-	background-position: center 0px;
-	color: #FFFFFF;
+    background-position: center 0px;
+    color: #FFFFFF;
 }body h5 {
-	font-family: iceberg;
-	font-style: normal;
-	font-weight: 400;
-	text-align: center;
-	font-size: xx-large;
-	margin-bottom: 1em;
+    font-family: iceberg;
+    font-style: normal;
+    font-weight: 400;
+    text-align: center;
+    font-size: xx-large;
+    margin-bottom: 1em;
 }
 body center {
-	font-family: iceberg;
-	font-style: normal;
-	font-weight: 400;
+    font-family: iceberg;
+    font-style: normal;
+    font-weight: 400;
 }
 body footer {
-	text-align: center;
-	font-family: iceberg;
-	font-style: normal;
-	font-weight: 400;
-	font-size: small;
-	margin-top: 20em;
+    text-align: center;
+    font-family: iceberg;
+    font-style: normal;
+    font-weight: 400;
+    font-size: small;
+    margin-top: 20em;
 }
 .button {
-	color: #48A1AF;
-	padding: 10px 20px;
-	text-align: center;
-	text-decoration: none;
-	font-size: 16px;
-	font-family: iceberg;
-	font-style: normal;
-	font-weight: 400;
+    color: #48A1AF;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    font-family: iceberg;
+    font-style: normal;
+    font-weight: 400;
 }
 .error {
     color: red;
+}
+
+.no-js #loader { display: none;  }
+.js #loader { display: block; position: absolute; left: 100px; top: 0; }
+.se-pre-con {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	background: url(../Images/loader.gif) center no-repeat #fff;
+        background-size: cover;
 }

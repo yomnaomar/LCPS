@@ -4,12 +4,6 @@
               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
               xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
 
-    <managed-bean>
-        <managed-bean-name>authentification</managed-bean-name>
-        <managed-bean-class>Login.Authentification</managed-bean-class>
-        <managed-bean-scope>session</managed-bean-scope>
-    </managed-bean>
-    
     <navigation-rule>
         <from-view-id>/index.xhtml</from-view-id>
         <navigation-case>
@@ -26,12 +20,6 @@
         </navigation-case>
     </navigation-rule>
     
-    <managed-bean>
-        <managed-bean-name>doctorpatients</managed-bean-name>
-        <managed-bean-class>DoctorFunctionalities.DoctorPatients</managed-bean-class>
-        <managed-bean-scope>session</managed-bean-scope>
-    </managed-bean>
-    
     <navigation-rule>
         <from-view-id>/Web Pages/doctorMain.xhtml</from-view-id>
         <navigation-case>
@@ -41,9 +29,62 @@
     </navigation-rule>
     
     <managed-bean>
-        <managed-bean-name>doctorpatientview</managed-bean-name>
-        <managed-bean-class>DoctorFunctionalities.DoctorPatientView</managed-bean-class>
+        <managed-bean-name>authentification</managed-bean-name>
+        <managed-bean-class>Login.Authentification</managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
     
+    <managed-bean>
+        <managed-bean-name>doctorpatients</managed-bean-name>
+        <managed-bean-class>DoctorFunctionalities.DoctorPatients</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>doctorpatientview</managed-bean-name>
+        <managed-bean-class>DoctorFunctionalities.DoctorPatientView</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>patientview</managed-bean-name>
+        <managed-bean-class>PatientFunctionalities.PatientView</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>analysis</managed-bean-name>
+        <managed-bean-class>AbdullahWeka.Analysis</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>fileUploadBean</managed-bean-name>
+        <managed-bean-class>AbdullahWeka.FileUploadBean</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>filesBean</managed-bean-name>
+        <managed-bean-class>AbdullahWeka.filesBean</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+        
+    <managed-bean>
+        <managed-bean-name>initialAnalysis</managed-bean-name>
+        <managed-bean-class>AbdullahWeka.initialAnalysis</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>manageFiles</managed-bean-name>
+        <managed-bean-class>AbdullahWeka.manageFiles</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>testingPatient</managed-bean-name>
+        <managed-bean-class>AbdullahWeka.testingPatient</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
 </faces-config>

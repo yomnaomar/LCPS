@@ -27,9 +27,11 @@ public class Authentification {
         errorMsg = "";
         try
         {
-            DriverManager.registerDriver(new com.microsoft.sqlserver.jdbc.SQLServerDriver());
+            DriverManager.registerDriver(new org.apache.derby.jdbc.ClientDriver());
             crs = RowSetProvider.newFactory().createCachedRowSet();
             crs.setUrl(DatabaseAccess.DBurl);
+            crs.setUsername(DatabaseAccess.DBuser);
+            crs.setPassword(DatabaseAccess.DBpass);
         }
         catch (SQLException ex)
         {
