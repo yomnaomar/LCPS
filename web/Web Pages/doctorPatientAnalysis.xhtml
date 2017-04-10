@@ -1,21 +1,35 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<!DOCTYPE html>
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html">
-    <head>
-        <title>TODO supply a title</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
-    <body>
-        The J48 Algorithm classified your patient as :"
-        #{testingPatient.prediction}" for #{analysis.fb.predicts}
-        <h:form>
-            <h:commandButton class="button" id="patientView" value="Back to Patient" action="doctorPatientView.xhtml"/>
-        </h:form>
-    </body>
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <meta charset="utf-8"/>
+        <link rel="icon" href="../Images/logoSeniorDesign.png"/>
+        <title>ELCD - #{doctorpatients.patientName}'s Analysis</title>
+        <link href="../Style Sheets/doctorDefault.css" rel="stylesheet" type="text/css"/>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.2/modernizr.js"></script>
+        <script>
+            $(window).load(function () {
+                $(".se-pre-con").fadeOut("slow");
+                ;
+            });
+        </script>
+        <script>var __adobewebfontsappname__ = "dreamweaver"</script><script src="http://use.edgefonts.net/iceberg:n4:default.js" type="text/javascript"></script>
+    </h:head>
+    <h:body>
+        <div class="se-pre-con"></div>
+        <f:view>
+            <header><a href="doctorMain.xhtml"><img src="../Images/logoSeniorDesign.png" width="150" height="150" alt=""/><h3>#{doctorpatients.patientName}'s Analysis</h3></a></header>
+            <nav><a href="doctorMain.xhtml" class="navHome">Home</a> &gt; <a href="doctorPatientGraph.xhtml" class="navHome"> xxx </a></nav>
+            <div>
+                <h4>The J48 algorithm classified your patient as </h4><h3><h:outputText value="#{testingPatient.prediction}"/> </h3><h4>for </h4><h3><h:outputText value="#{analysis.fb.predicts}"/></h3><br/>
+                <h:form>
+                    <h:commandButton class="button" id="patientView" value="Back to Patient" action="doctorPatientView.xhtml"/>
+                </h:form>
+            </div>
+        </f:view>
+    </h:body>
 </html>

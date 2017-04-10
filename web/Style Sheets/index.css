@@ -62,15 +62,6 @@ body nav a {
     -o-transition: all 0.5s ease-in-out 0s;
     transition: all 0.5s ease-in-out 0s;
 }
-.navQuickAnalysis {
-    background-image: url(../Images/iconQuickAnalysis.png);
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center 35px;
-    -webkit-transition: all 0.5s ease-in-out 0s;
-    -o-transition: all 0.5s ease-in-out 0s;
-    transition: all 0.5s ease-in-out 0s;
-}
 .navHelp {
     background-image: url(../Images/iconHelp.png);
     background-size: contain;
@@ -133,16 +124,15 @@ body footer {
 .error {
     color: red;
 }
-
 .no-js #loader { display: none;  }
 .js #loader { display: block; position: absolute; left: 100px; top: 0; }
 .se-pre-con {
-	position: fixed;
-	left: 0px;
-	top: 0px;
-	width: 100%;
-	height: 100%;
-	z-index: 9999;
-	background: url(../Images/loader.gif) center no-repeat #fff;
-        background-size: cover;
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background: url(../Images/loader.gif) center no-repeat #fff;
+    background-size: cover;
 }

@@ -43,24 +43,6 @@ public class DoctorPatients {
         }
     }
 
-    public void init() {
-        this.patients = new ArrayList<>();
-        this.errorMsg = "";
-        this.patientName = "";
-        DoctorPatients.patientID = 0;
-        try {
-            // To get Patient
-            DriverManager.registerDriver(new org.apache.derby.jdbc.ClientDriver());
-            crs = RowSetProvider.newFactory().createCachedRowSet();
-            crs.setUrl(DatabaseAccess.DBurl);
-            crs.setUsername(DatabaseAccess.DBuser);
-            crs.setPassword(DatabaseAccess.DBpass);
-        } catch (SQLException ex) {
-            this.errorMsg = "Error in accessing the database: Please try again later";
-            Logger.getLogger(DoctorPatients.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
     public ArrayList<ELCDuser> getPatients() {
         this.patients.clear();
         this.errorMsg = "";

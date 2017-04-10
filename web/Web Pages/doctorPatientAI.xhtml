@@ -6,7 +6,7 @@
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <head>
         <meta charset="utf-8"/>
-        <link rel="icon" href="Images/logoSeniorDesign.png"/>
+        <link rel="icon" href="../Images/logoSeniorDesign.png"/>
         <title>ELCD - Patient #{doctorpatients.patientName}'s Analysis</title>
         <link href="../Style Sheets/doctorPatientAI.css" rel="stylesheet" type="text/css"/>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
@@ -28,9 +28,9 @@
                     <nav><a href="doctorMain.xhtml" class="navHome">Home</a> &gt; <a href="doctorPatientAI.xhtml" class="navHome">AI Analysis</a></nav>
                     <h:form>
                         <h3>Databases Available To Use:</h3>
-                        <h:dataTable border="1"  var="files" value="#{manageFiles.files}">                   
+                        <h:dataTable var="files" value="#{manageFiles.files}" headerClass="tableheader" rowClasses="oddrow, evenrow">                   
                             <h:column>
-                                <f:facet name="header">Name of Database</f:facet>
+                                <f:facet name="header">Dataset Name</f:facet>
                                 <h:outputText value="#{files.filename}"/>
                             </h:column>
                             <h:column>
@@ -46,10 +46,11 @@
                                 <h:outputText value="#{files.description}"/>
                             </h:column>
                             <h:column>
-                                <h:commandButton value="Analyze Database" action="#{manageFiles.chosen(files.ID)}"/>
+                                <f:facet name="header">Analyze Dataset</f:facet>
+                                <h:commandButton class="button" value="Go!" action="#{manageFiles.chosen(files.ID)}"/>
                             </h:column>
                         </h:dataTable>
-                        <h:commandButton value="Upload New Database" action="doctorUploadDB.xhtml"/>  
+                        <h:commandButton class="button" value="Upload New Database" action="doctorUploadDB.xhtml"/>  
                     </h:form>
                     <footer>CMP 491 - Senior Design Project - American University of Sharjah © 2017</footer>
                 </center>

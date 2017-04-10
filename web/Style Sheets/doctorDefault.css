@@ -15,15 +15,16 @@ body header {
 	color: #000000;
 	text-decoration: none;
 }
-header a h2 {
+header a h3 {
 	color: #000000;
 	text-decoration: none;
 	text-align: center;
+	margin-top: 0em;
+	margin-bottom: 0.25em;
 }
 body header a {
 	text-decoration: none;
 }
-
 body nav {
 	font-family: iceberg;
 	font-style: normal;
@@ -36,13 +37,10 @@ body nav {
 	background-color: #000000;
 	margin-right: 10em;
 }
-
-
 body nav a {
 	text-decoration: none;
 	color: #48A1AF;
 }
-
 .navHome {
 	-webkit-transition: all 0.5s ease-in-out;
 	-o-transition: all 0.5s ease-in-out;
@@ -56,23 +54,9 @@ body div {
 	font-size: large;
 	margin-left: 10em;
 	margin-right: 10em;
-	text-align: center;
 }
-
 .navHome:hover {
 	color: #FFFFFF;
-}
-.navAbout {
-	-webkit-transition: all 0.5s ease-in-out;
-	-o-transition: all 0.5s ease-in-out;
-	transition: all 0.5s ease-in-out;
-}
-.navAbout:hover {
-	color: #FFFFFF;
-}
-header a img {
-	margin-top: -1em;
-	margin-bottom: 0.5em;
 }
 body footer {
 	text-align: center;
@@ -80,9 +64,8 @@ body footer {
 	font-style: normal;
 	font-weight: 400;
 	font-size: small;
-	margin-top: 50em;
+	margin-top: 4em;
 }
-
 .no-js #loader { display: none;  }
 .js #loader { display: block; position: absolute; left: 100px; top: 0; }
 .se-pre-con {
@@ -94,4 +77,14 @@ body footer {
 	z-index: 9999;
 	background: url(../Images/loader.gif) center no-repeat #fff;
         background-size: cover;
+}
+.button {
+    color: #48A1AF;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    font-family: iceberg;
+    font-style: normal;
+    font-weight: 400;
 }

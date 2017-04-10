@@ -6,7 +6,7 @@
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <meta charset="utf-8"/>
-        <link rel="icon" href="Images/logoSeniorDesign.png"/>
+        <link rel="icon" href="../Images/logoSeniorDesign.png"/>
         <title>ELCD - Home</title>
         <link href="../Style Sheets/doctorMain.css" rel="stylesheet" type="text/css"/>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
@@ -21,7 +21,6 @@
     </h:head>
     <h:body>
         <div class="se-pre-con"></div>
-        <f:event type="postAddToView" listener="#{doctorpatients.init()}"/>
         <f:view>
             <header><a href="doctorMain.xhtml"><img src="../Images/logoSeniorDesign.png" width="150" height="150" alt=""/><h3>Welcome Dr. <h:outputText value="#{authentification.firstname}"/>!</h3></a></header>
             <nav><a href="doctorMain.xhtml" class="navHome">Home</a></nav>
