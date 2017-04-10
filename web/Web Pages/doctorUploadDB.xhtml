@@ -23,23 +23,42 @@
         <div class="se-pre-con"></div>
         <f:view>
             <header><a href="doctorMain.xhtml"><img src="../Images/logoSeniorDesign.png" width="150" height="150" alt=""/><h3>Upload Your Testing Dataset</h3></a></header>
-            <nav><a href="doctorMain.xhtml" class="navHome">Home</a> &gt; <a href="doctorPatientGraph.xhtml" class="navHome"> xxx </a></nav>
+            <nav><a href="doctorMain.xhtml" class="navHome">Home</a> &gt; <a href="doctorPatientView.xhtml" class="navHome">Patient <h:outputText value="#{doctorpatients.patientName}"/></a> &gt; <a href="doctorPatientAI.xhtml" class="navHome">AI Analysis</a> &gt; <a href="doctorUploadDB.xhtml" class="navHome">Upload Dataset</a></nav>
             <div>
-                <h:form id= "form" enctype="multipart/form-data" prependId="false">
-                    <p>
-                        <h:inputFile id="file" value="#{fileUploadBean.uploadedFile}"/><br/>
-                        <h:outputText value="File Name: "/> <h:inputText id="filename" value="#{fileUploadBean.filename}"/><br/>
-                        <h:outputText value="File Type: "/> 
-                        <h:selectOneListbox value="#{fileUploadBean.filetype}">
-                            <f:selectItem itemValue="arff" itemLabel="ARFF"/>
-                            <f:selectItem itemValue="csv" itemLabel="CSV"/>
-                            <f:selectItem itemValue="JSON" itemLabel="JSON"/>
-                        </h:selectOneListbox><br/>
-                        <h:outputText value="Short description of the database: "/><h:inputText id="desc" value="#{fileUploadBean.description}"/><br/>
-                        <h:outputText value="What does it predict? "/><h:inputText id="predics" value="#{fileUploadBean.predicts}"/><br/>
-                        <h:commandButton class="button" id="button" value="Upload" action="#{fileUploadBean.upload}"/>
-                    </p>
-                </h:form>
+                <center>
+                    <h:form id= "form" enctype="multipart/form-data" prependId="false">
+                        <p>
+                            <table>
+                                <tr>
+                                    <td>File:</td>
+                                    <td><h:inputFile class="button" id="file" value="#{fileUploadBean.uploadedFile}"/></td>
+                                </tr>
+                                <tr>
+                                    <td>File Name:</td>
+                                    <td><h:inputText id="filename" value="#{fileUploadBean.filename}"/></td>
+                                </tr>
+                                <tr>
+                                    <td>File Type:</td>
+                                    <td><h:selectOneListbox class="button" value="#{fileUploadBean.filetype}">
+                                            <f:selectItem itemValue="arff" itemLabel="ARFF"/>
+                                            <f:selectItem itemValue="csv" itemLabel="CSV"/>
+                                            <f:selectItem itemValue="JSON" itemLabel="JSON"/>
+                                        </h:selectOneListbox></td>
+                                </tr>
+                                <tr>
+                                    <td>Short Description of the Dataset:</td>
+                                    <td><h:inputText id="desc" value="#{fileUploadBean.description}"/></td>
+                                </tr>
+                                <tr>
+                                    <td>What Does it Predict?</td>
+                                    <td><h:inputText id="predics" value="#{fileUploadBean.predicts}"/></td>
+                                </tr>
+                            </table>
+                            <br/><h:commandButton class="button" id="button" value="Upload" action="#{fileUploadBean.upload}"/>
+                        </p>
+                    </h:form>
+                    <footer>CMP 491 - Senior Design Project - American University of Sharjah © 2017</footer>
+                </center>
             </div>
         </f:view>
     </h:body>

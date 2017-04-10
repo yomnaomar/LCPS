@@ -7,7 +7,7 @@
     <head>
         <meta charset="utf-8"/>
         <link rel="icon" href="../Images/logoSeniorDesign.png"/>
-        <title>ELCD - Patient #{doctorpatients.patientName}'s Analysis</title>
+        <title>ELCD - AI Analysis</title>
         <link href="../Style Sheets/doctorPatientAI.css" rel="stylesheet" type="text/css"/>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
         <script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.2/modernizr.js"></script>
@@ -24,8 +24,8 @@
         <f:view>
             <div>
                 <center>
-                    <header><a href="doctorMain.xhtml"><img src="../Images/logoSeniorDesign.png" width="150" height="150" alt=""/><h3>Patient <h:outputText value="#{doctorpatients.patientName}"/>'s Analysis</h3></a></header>
-                    <nav><a href="doctorMain.xhtml" class="navHome">Home</a> &gt; <a href="doctorPatientAI.xhtml" class="navHome">AI Analysis</a></nav>
+                    <header><a href="doctorMain.xhtml"><img src="../Images/logoSeniorDesign.png" width="150" height="150" alt=""/><h3>AI Analysis</h3></a></header>
+                    <nav><a href="doctorMain.xhtml" class="navHome">Home</a> &gt; <a href="doctorPatientView.xhtml" class="navHome">Patient <h:outputText value="#{doctorpatients.patientName}"/></a> &gt; <a href="doctorPatientAI.xhtml" class="navHome">AI Analysis</a></nav>
                     <h:form>
                         <h3>Databases Available To Use:</h3>
                         <h:dataTable var="files" value="#{manageFiles.files}" headerClass="tableheader" rowClasses="oddrow, evenrow">                   

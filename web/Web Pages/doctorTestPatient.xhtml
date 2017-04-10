@@ -7,7 +7,7 @@
     <head>
         <meta charset="utf-8"/>
         <link rel="icon" href="../Images/logoSeniorDesign.png"/>
-        <title>ELCD - Analyzing #{doctorpatients.patientName}</title>
+        <title>ELCD - Enter #{doctorpatients.patientName}'s Data</title>
         <link href="../Style Sheets/doctorDefault.css" rel="stylesheet" type="text/css"/>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
         <script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.2/modernizr.js"></script>
@@ -22,14 +22,17 @@
     <h:body>
         <div class="se-pre-con"></div>
         <f:view>
-            <header><a href="doctorMain.xhtml"><img src="../Images/logoSeniorDesign.png" width="150" height="150" alt=""/><h3>Analyzing #{doctorpatients.patientName}</h3></a></header>
-            <nav><a href="doctorMain.xhtml" class="navHome">Home</a> &gt; <a href="doctorPatientGraph.xhtml" class="navHome"> xxx </a></nav>
+            <header><a href="doctorMain.xhtml"><img src="../Images/logoSeniorDesign.png" width="150" height="150" alt=""/><h3>Enter #{doctorpatients.patientName}'s Data</h3></a></header>
+            <nav><a href="doctorMain.xhtml" class="navHome">Home</a> &gt; <a href="doctorPatientView.xhtml" class="navHome">Patient <h:outputText value="#{doctorpatients.patientName}"/></a> &gt; <a href="doctorPatientAI.xhtml" class="navHome">AI Analysis</a> &gt; <a href="doctorDBAnalysis.xhtml" class="navHome">Dataset Analysis</a> &gt; <a href="doctorTestPatient.xhtml" class="navHome">Enter Patient Data</a></nav>
             <div>
-                <h:form> 
-                    <h3>Patient Data:</h3><br/>
-                    <h:inputTextarea rows="10" cols = "50" id="patientinfo" value="#{testingPatient.patientData}"/><br/>
-                    <h:commandButton class="button" id="button" value="Predict" action="#{testingPatient.performPatientAnalysis(analysis.train,analysis.j48)}"/>
-                </h:form>
+                <center>
+                    <h:form> 
+                        <h3>Patient Data:</h3>
+                        <h:inputTextarea class="button" rows="10" cols = "50" id="patientinfo" value="#{testingPatient.patientData}"/><br/>
+                        <h:commandButton class="button" id="button" value="Predict" action="#{testingPatient.performPatientAnalysis(analysis.train,analysis.j48)}"/>
+                    </h:form>
+                    <footer>CMP 491 - Senior Design Project - American University of Sharjah © 2017</footer>
+                </center>
             </div>
         </f:view>
     </h:body>

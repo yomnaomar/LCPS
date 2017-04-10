@@ -22,13 +22,24 @@
     <h:body>
         <div class="se-pre-con"></div>
         <f:view>
-            <header><a href="doctorMain.xhtml"><img src="../Images/logoSeniorDesign.png" width="150" height="150" alt=""/><h3>#{doctorpatients.patientName}'s Analysis</h3></a></header>
-            <nav><a href="doctorMain.xhtml" class="navHome">Home</a> &gt; <a href="doctorPatientGraph.xhtml" class="navHome"> xxx </a></nav>
+            <header><a href="doctorMain.xhtml"><img src="../Images/logoSeniorDesign.png" width="150" height="150" alt=""/><h3><h:outputText value="#{doctorpatients.patientName}"/>'s Analysis</h3></a></header>
+            <nav><a href="doctorMain.xhtml" class="navHome">Home</a> &gt; <a href="doctorPatientView.xhtml" class="navHome">Patient <h:outputText value="#{doctorpatients.patientName}"/></a> &gt; <a href="doctorPatientAI.xhtml" class="navHome">AI Analysis</a> &gt; <a href="doctorDBAnalysis.xhtml" class="navHome">Dataset Analysis</a> &gt; <a href="doctorTestPatient.xhtml" class="navHome">Enter Patient Data</a> &gt; <a href="doctorPatientAnalysis.xhtml" class="navHome">Patient's Analysis</a></nav>
             <div>
-                <h4>The J48 algorithm classified your patient as </h4><h3><h:outputText value="#{testingPatient.prediction}"/> </h3><h4>for </h4><h3><h:outputText value="#{analysis.fb.predicts}"/></h3><br/>
-                <h:form>
-                    <h:commandButton class="button" id="patientView" value="Back to Patient" action="doctorPatientView.xhtml"/>
-                </h:form>
+                <center>
+                    <h3>The J48 algorithm classified your patient as </h3>
+                    <h1><h:outputText value="#{testingPatient.prediction}"/></h1>
+                    <h3>for <h:outputText value="#{analysis.fb.predicts}">
+                            <f:param name="testName" value="#{analysis.fb.predicts}"/>
+                        </h:outputText></h3>
+                    <h:form>
+                        Is it fatal? <h:selectOneRadio value="#{testingPatient.fatal}">                            
+                            <f:selectItem itemValue="#{true}" itemLabel="Yes"/>
+                            <f:selectItem itemValue="#{false}" itemLabel="No"/>
+                        </h:selectOneRadio>
+                        <h:commandButton class="button" id="patientView" value="Back to Patient" action="#{testingPatient.backToPatient()}"/>
+                    </h:form>
+                    <footer>CMP 491 - Senior Design Project - American University of Sharjah © 2017</footer>
+                </center>
             </div>
         </f:view>
     </h:body>

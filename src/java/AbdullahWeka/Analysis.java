@@ -10,19 +10,12 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.DriverManager;
-import java.sql.SQLException;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.sql.rowset.CachedRowSet;
 import javax.sql.rowset.RowSetProvider;
 import weka.classifiers.Evaluation;
@@ -35,8 +28,7 @@ import weka.core.Instances;
  */
 @ManagedBean
 @SessionScoped
-@WebServlet(urlPatterns = {"/data"})
-public class Analysis extends HttpServlet {
+public class Analysis {
 
     private int id;
 
@@ -207,42 +199,21 @@ public class Analysis extends HttpServlet {
         }
     }
 
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            String classes = train.classAttribute().toString();
-            String[] tempClasses = classes.split("\\{");
-            String[] tempClasses2 = tempClasses[1].split("\\}");
-            String Labels = tempClasses2[0];
-            String[] att = Labels.split(",");
-            String string = "[['Labels','Correctly Classified %'],";
-            double[][] temp = eval.confusionMatrix();
-            double[] values = new double[train.numClasses()];
-//            for (int i = 0; i < train.numClasses(); i++) {
-//                values[i] = temp[i][i] / train.numInstances();
-//                string += "['" + att[i] + "'," + values[i] + "],";
-//            }
-            string += "['Work',11],['Eat',      2]]";
-            //string = string.substring(0, string.length() - 1) + "]";
-            System.out.println(string);
-            out.println(string);
+    public String getDonutChartValues() {
+        String classes = train.classAttribute().toString();
+        String[] tempClasses = classes.split("\\{");
+        String[] tempClasses2 = tempClasses[1].split("\\}");
+        String Labels = tempClasses2[0];
+        String[] att = Labels.split(",");
+        String string = "[['Labels','Correctly Classified %'],";
+        double[][] temp = eval.confusionMatrix();
+        double[] values = new double[train.numClasses()];
+        for (int i = 0; i < train.numClasses(); i++) {
+            values[i] = temp[i][i] / train.numInstances();
+            string += "['" + att[i] + "'," + values[i] + "],";
         }
-    }
-
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
-
-    @Override
-    public String getServletInfo() {
-        return "Short description";
+        string = string.substring(0, string.length() - 1) + "]";
+        System.out.println(string);
+        return string;
     }
 }
