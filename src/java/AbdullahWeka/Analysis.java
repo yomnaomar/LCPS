@@ -43,6 +43,10 @@ public class Analysis {
     private String matrix;
     private Instances train;
     private J48 j48;
+    private String attributeSelectedName;
+    private int maxInstances;
+    private double maxAttValue;
+    private double minAttValue;
 
     public String getExtraTestInfo() {
 
@@ -159,6 +163,42 @@ public class Analysis {
     public void setJ48(J48 j48) {
         this.j48 = j48;
     }
+    
+    
+        public String getAttributeSelectedName() {
+        return attributeSelectedName;
+    }
+
+    public void setAttributeSelectedName(String attributeSelectedName) {
+        this.attributeSelectedName = attributeSelectedName;
+    }
+
+    public int getMaxInstances() {
+        return train.numInstances();
+    }
+
+    public void setMaxInstances(int maxInstances) {
+        this.maxInstances = maxInstances;
+    }
+
+    public double getMaxAttValue() {
+        return maxAttValue;
+    }
+
+    public double getMinAttValue() {
+        return minAttValue;
+    }
+
+    public void setMaxAttValue(double maxAttValue) {
+        this.maxAttValue = maxAttValue;
+    }
+
+    public void setMinAttValue(double minAttValue) {
+        this.minAttValue = minAttValue;
+    }
+    
+    
+    
 
     public void analyze(int i) {
 
@@ -216,4 +256,97 @@ public class Analysis {
         System.out.println(string);
         return string;
     }
+    
+         public String graphValues()
+    {
+            String classes = train.attribute(5).toString();
+            //System.out.println(classes);
+            String[] tempClasses = classes.split("@attribute");
+            //String[] tempClasses2 = tempClasses[1].split("\\}");
+            String Labels = tempClasses[1];
+            //String[] att = Labels.split(",");
+            String string = "[['Number of Instances','"+Labels+"'],";
+            //double[][] temp = eval.confusionMatrix();
+            double[] values = new double[train.numInstances()];
+            maxAttValue = 0;
+            minAttValue = 1000000;
+            for (int i = 0; i < train.numInstances(); i++) {
+                values[i] = train.get(i).value(5);
+                //values[i] = (temp[i][i]);
+                if(values[i] > maxAttValue)
+                    maxAttValue = values[i] ;
+                if(values[i] < minAttValue)
+                    minAttValue = values[i] ;
+                string += "['" + i + "'," + values[i] + "],";
+            }
+            //string += "['Incorrect'," + eval.incorrect() + "],";
+            //string += "['Work',11],['Eat',      2]]";
+            string = string.substring(0, string.length() - 1) + "]";
+            //System.out.println(string);
+            //eval.incorrect();
+            return string;
+  
+    }
+         
+    public String attributeName(int i)
+    {
+        
+        String attributeSelectedName = train.attribute(i).toString().split("@attribute")[1];
+
+        return attributeSelectedName;
+    }
+
+        public String graphValuesCorrect()
+    {
+            String classes = train.classAttribute().toString();
+            String[] tempClasses = classes.split("\\{");
+            String[] tempClasses2 = tempClasses[1].split("\\}");
+            String Labels = tempClasses2[0];
+            String[] att = Labels.split(",");
+            String string = "[['Labels','Correctly Classified %'],";
+            double[][] temp = eval.confusionMatrix();
+            double[] values = new double[train.numClasses()];
+            for (int i = 0; i < train.numClasses(); i++) {
+                values[i] = (temp[i][i]);
+                string += "['" + att[i] + "'," + values[i] + "],";
+            }
+            string += "['Incorrect'," + eval.incorrect() + "],";
+            string = string.substring(0, string.length() - 1) + "]";
+
+            return string;
+  
+    }
+        
+             public String graphValuesIncorrect()
+    {
+            String classes = train.classAttribute().toString();
+            String[] tempClasses = classes.split("\\{");
+            String[] tempClasses2 = tempClasses[1].split("\\}");
+            String Labels = tempClasses2[0];
+            String[] att = Labels.split(",");
+            String string = "[['Labels','Incorrectly Classified %'],";
+            double[][] temp = eval.confusionMatrix();
+            double[] values = new double[train.numClasses()];
+            for (int i = 0; i < train.numClasses(); i++) {
+                
+                for(int j =0; j < train.numClasses();j++)
+                {
+                    if (i != j)
+                        values[i] += (temp[i][j]);
+                }
+
+                string += "['" + att[i] + "'," + values[i] + "],";
+            }
+
+            string = string.substring(0, string.length() - 1) + "]";
+
+            return string;
+  
+    }
+    
+    
+    
+    
+    
+    
 }

@@ -18,6 +18,68 @@
             });
         </script>
         <script>var __adobewebfontsappname__ = "dreamweaver"</script><script src="http://use.edgefonts.net/iceberg:n4:default.js" type="text/javascript"></script>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script type="text/javascript">
+            google.charts.load('current', {'packages': ['corechart']});
+            google.charts.setOnLoadCallback(drawChart);
+            function drawChart() {
+            #{analysis.analyze(manageFiles.chosen)};
+                var data = google.visualization.arrayToDataTable(#{analysis.graphValues()});
+                var options = {
+                    title: 'Instances vs. #{analysis.attributeName(5)} Comparison for #{analysis.maxInstances} instances',
+                    hAxis: {title: 'Instances', minValue: 0, maxValue: #{analysis.maxInstances}},
+                    vAxis: {title: '#{analysis.attributeName(5)}', minValue: #{analysis.minAttValue}, maxValue: #{analysis.maxAttValue}},
+                    legend: 'none',
+                    'backgroundColor': 'transparent',
+                    'width': 900,
+                    'height': 500,
+                    'textalign': 'center',
+                    'fontfamily':'iceberg'
+                };
+                var chart = new google.visualization.ScatterChart(document.getElementById('chart_div'));
+                chart.draw(data, options);
+            }
+        </script>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script type="text/javascript">
+
+            google.charts.load('current', {'packages': ['corechart']});
+            google.charts.setOnLoadCallback(drawChart);
+            function drawChart() {
+                var data = google.visualization.arrayToDataTable(#{analysis.graphValuesCorrect()});
+                var options = {
+                    title: 'Correctly Classified Instances for #{analysis.maxInstances} instances',
+                    pieHole: 0.4,
+                    'backgroundColor': 'transparent',
+                    'width': 900,
+                    'height': 500,
+                    'textalign': 'center',
+                    'fontfamily':'iceberg'
+                };
+                var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+                chart.draw(data, options);
+            }
+        </script>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script type="text/javascript">
+
+            google.charts.load('current', {'packages': ['corechart']});
+            google.charts.setOnLoadCallback(drawChart);
+            function drawChart() {
+                var data = google.visualization.arrayToDataTable(#{analysis.graphValuesIncorrect()});
+                var options = {
+                    'title': 'Incorrectly Classified Instances for #{analysis.maxInstances} instances',
+                    'pieHole': 0.4,
+                    'backgroundColor': 'transparent',
+                    'width': 900,
+                    'height': 500,
+                    'textalign': 'center',
+                    'fontfamily':'iceberg'
+                };
+                var chart = new google.visualization.PieChart(document.getElementById('donutchart2'));
+                chart.draw(data, options);
+            }
+        </script>
     </h:head>
     <h:body>
         <div class="se-pre-con"></div>
@@ -34,8 +96,11 @@
                     <h3>Accuracy of a patient being correctly classified using J48: <h:outputText value="#{analysis.correctPercentage}"/></h3>
                     <h3>Test the database on your patient: <h:commandButton class="button" value="Analyze" action="doctorTestPatient.xhtml"/></h3>
                 </h:form>
-                <footer>CMP 491 - Senior Design Project - American University of Sharjah © 2017</footer>
+                <p id="donutchart"></p>
+                <p id="donutchart2"></p>
+                <p id="chart_div"></p>
             </div>
+            <footer>CMP 491 - Senior Design Project - American University of Sharjah © 2017</footer>
         </f:view>
     </h:body>
 </html>

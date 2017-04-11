@@ -164,7 +164,7 @@ public class testingPatient {
             crs.setCommand("INSERT INTO Gene(patientID, doctorID, name, result, isFatal) VALUES(?, ?, ?, ?, ?)");
             crs.setInt(1, DoctorPatients.getPatientID());
             crs.setInt(2, Authentification.getUserID());
-            crs.setString(3, testName);
+            crs.setString(3, "Lung Cancer");
             crs.setString(4, prediction);
             crs.setBoolean(5, fatal);
             crs.execute();
