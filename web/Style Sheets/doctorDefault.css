@@ -88,3 +88,27 @@ body footer {
     font-style: normal;
     font-weight: 400;
 }
+.graphs {
+    margin-left: -500px;
+    padding: 0px;
+}
+.ibk {
+    margin-right: 300px;
+}
+.sectionLeft {
+    margin-left: -150px;
+    margin-right: 300px;
+    padding: 0px;
+    clear: left;
+    float: left;
+}
+.sectionRight {
+    margin-left: -150px;
+    padding: 0px;
+    clear: right;
+    float: right;
+}
+.sectionBottom {
+    clear: both;
+    margin-top: 3em;
+}

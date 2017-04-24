@@ -26,7 +26,7 @@
             <nav><a href="doctorMain.xhtml" class="navHome">Home</a> &gt; <a href="doctorPatientView.xhtml" class="navHome">Patient <h:outputText value="#{doctorpatients.patientName}"/></a> &gt; <a href="doctorPatientAI.xhtml" class="navHome">AI Analysis</a> &gt; <a href="doctorDBAnalysis.xhtml" class="navHome">Dataset Analysis</a> &gt; <a href="doctorTestPatient.xhtml" class="navHome">Enter Patient Data</a> &gt; <a href="doctorPatientAnalysis.xhtml" class="navHome">Patient's Analysis</a></nav>
             <div>
                 <center>
-                    <h3>The J48 algorithm classified your patient as </h3>
+                    <h3>The #{analysis.chosenAlgo} algorithm classified your patient as </h3>
                     <h1><h:outputText value="#{testingPatient.prediction}"/></h1>
                     <h3>for <h:outputText value="#{analysis.fb.predicts}">
                             <f:param name="testName" value="#{analysis.fb.predicts}"/>

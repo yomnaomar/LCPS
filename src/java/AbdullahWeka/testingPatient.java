@@ -19,6 +19,8 @@ import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.rowset.CachedRowSet;
 import javax.sql.rowset.RowSetProvider;
+import weka.classifiers.bayes.NaiveBayes;
+import weka.classifiers.lazy.IBk;
 import weka.classifiers.trees.J48;
 import weka.core.Instance;
 import weka.core.Instances;
@@ -78,7 +80,7 @@ public class testingPatient {
         this.patientData = patientData;
     }
 
-    public void performPatientAnalysis(Instances trainDataset, J48 j48) {
+    public void performPatientAnalysis(Instances trainDataset, J48 j48, NaiveBayes nb, IBk ibk, filesBean fb, String chosen) {
 
         try {
             //load training dataset
@@ -92,7 +94,7 @@ public class testingPatient {
             String completeFile = "";
             int start, end;
             BufferedReader reader
-                    = new BufferedReader(new FileReader("D:/Documents/University Docs/Spring 2017/CMP 491 - Senior Design II/Testing/AllfilesForProgram/LungGenes.arff"));
+                    = new BufferedReader(new FileReader("C:/Users/Yomna/Desktop/SD/SD/AllfilesForProgram/"+ fb.getFilename()+".arff"));
 
             while ((line = reader.readLine()) != null) {
                 completeFile += line;
@@ -115,7 +117,7 @@ public class testingPatient {
 
             FileOutputStream fop = null;
             File file = null;
-            file = new File("D:/Documents/University Docs/Spring 2017/CMP 491 - Senior Design II/Testing/AllfilesForProgram/LungGenes.arff");
+            file = new File("C:/Users/Yomna/Desktop/SD/SD/AllfilesForProgram/Test.arff");
             fop = new FileOutputStream(file);
             if (!file.exists()) {
                 file.createNewFile();
@@ -131,12 +133,18 @@ public class testingPatient {
 
             //J48 smo = new J48();
             //smo.buildClassifier(trainDataset);
-            source2 = new DataSource("D:/Documents/University Docs/Spring 2017/CMP 491 - Senior Design II/Testing/AllfilesForProgram/LungGenes.arff");
+            source2 = new DataSource("C:/Users/Yomna/Desktop/SD/SD/AllfilesForProgram/Test.arff");
 
             Instances testDataset = source2.getDataSet();
             testDataset.setClassIndex(testDataset.numAttributes() - 1);
             Instance newInst = testDataset.instance(0);
-            int predSMO = (int) j48.classifyInstance(newInst);
+            int predSMO;
+            if (chosen.equals("J48"))
+                predSMO = (int) j48.classifyInstance(newInst);
+            else if (chosen.equals("NaiveBayes"))
+                predSMO = (int) nb.classifyInstance(newInst); 
+            else
+                predSMO = (int) ibk.classifyInstance(newInst);
             prediction = trainDataset.classAttribute().value(predSMO);
 
             //return prediction;

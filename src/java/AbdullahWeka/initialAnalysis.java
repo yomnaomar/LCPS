@@ -25,9 +25,7 @@ import weka.filters.Filter;
 import weka.filters.unsupervised.instance.NonSparseToSparse;
 import weka.core.converters.ArffSaver;
 import weka.filters.supervised.attribute.AttributeSelection;
-
-
-
+import weka.filters.supervised.attribute.Discretize;
 /**
  *
  * @author Abdullah
@@ -36,7 +34,6 @@ import weka.filters.supervised.attribute.AttributeSelection;
 @RequestScoped
 public class initialAnalysis {
 
-        
     private CachedRowSet crs = null;
     private filesBean fb;
     private Evaluation eval;
@@ -71,7 +68,7 @@ public class initialAnalysis {
     
          try {
             BufferedReader breader = null;
-            breader = new BufferedReader(new FileReader("D:/Documents/University Docs/Spring 2017/CMP 491 - Senior Design II/Testing/AllfilesForProgram/"+filename+".arff"));
+            breader = new BufferedReader(new FileReader("C:/Users/Yomna/Desktop/SD/SD/AllfilesForProgram/"+filename+".arff"));
             Instances toTrain = new Instances (breader);
             breader.close();
             
@@ -89,7 +86,7 @@ public class initialAnalysis {
             
             ArffSaver saver = new ArffSaver();
             saver.setInstances(train);
-            saver.setFile(new File("D:/Documents/University Docs/Spring 2017/CMP 491 - Senior Design II/Testing/AllfilesForProgram/"+filename+"SUCCESSDED.arff"));
+            saver.setFile(new File("C:/Users/Yomna/Desktop/SD/SD/AllfilesForProgram/"+filename+"SUCCESSDED.arff"));
             saver.writeBatch();
             
     }catch (FileNotFoundException ex) {
@@ -122,13 +119,21 @@ public class initialAnalysis {
             filter.setInputFormat(train);
             */
             
+            String [] options = new String[4];
+            options[0] = "-B"; 
+            options[1] = "2";
+            options[2] = "-R";
+            options[3] = "" + train.numAttributes();
+            Discretize discretize = new Discretize();
+            discretize.setOptions(options);
+            discretize.setInputFormat(train);
             
             
             
             
             Instances newData = Filter.useFilter(train, sp);
             //newData = Filter.useFilter(newData, filter);
-
+            newData = Filter.useFilter(newData, discretize);
 
             return newData;
         } catch (Exception ex) {

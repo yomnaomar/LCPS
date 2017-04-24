@@ -96,13 +96,13 @@ public class Authentification {
                 if(crs.getString("password").equals(password))
                 {
                     this.firstname = crs.getString("firstname");
-                    this.userID = crs.getInt("userID");
+                    Authentification.userID = crs.getInt("userID");
                     this.validUser = true;
                 }
             }
             // Check if the user is a doctor
             crs.setCommand("SELECT * FROM Doctor WHERE doctorID = ?");
-            crs.setInt(1, this.userID);
+            crs.setInt(1, Authentification.userID);
             crs.execute();
             crs.beforeFirst();
             while(crs.next())
@@ -111,7 +111,7 @@ public class Authentification {
             }
             // Check if the user is a patient
             crs.setCommand("SELECT * FROM Patient WHERE patientID = ?");
-            crs.setInt(1, this.userID);
+            crs.setInt(1, Authentification.userID);
             crs.execute();
             crs.beforeFirst();
             while(crs.next())

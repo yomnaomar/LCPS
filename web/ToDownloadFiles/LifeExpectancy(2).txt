@@ -1,0 +1,10 @@
+
+@RELATION  'va (1)-weka.filters.unsupervised.attribute.discretize-b7-m-1.0-rfirst-weka.filters.unsupervised.attribute.reorder-r2,3,4,5,6,7,8,1'
+@attribute status numeric
+@attribute treat numeric
+@attribute age numeric
+@attribute karn numeric
+@attribute diag.time numeric
+@attribute cell numeric
+@attribute prior numeric
+@attribute stime {'\'(-inf-143.571429]\'','\'(143.571429-286.142857]\'','\'(286.142857-428.714286]\'','\'(428.714286-571.285714]\'','\'(571.285714-713.857143]\'','\'(713.857143-856.428571]\'','\'(856.428571-inf)\''}

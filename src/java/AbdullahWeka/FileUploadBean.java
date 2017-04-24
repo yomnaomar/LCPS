@@ -7,12 +7,16 @@ package AbdullahWeka;
 //<p id="textOutput">Uploaded file Status:   #{fileUploadBean.text}</p>
 
 import Database.Access.DatabaseAccess;
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import javax.faces.bean.ManagedBean;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Scanner;
@@ -24,6 +28,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import javax.sql.rowset.CachedRowSet;
 import javax.sql.rowset.RowSetProvider;
+import weka.core.Instances;
+import weka.core.converters.ArffLoader;
+import weka.core.converters.ArffSaver;
+import weka.core.converters.CSVLoader;
+import weka.core.converters.CSVSaver;
 
 /**
  *
@@ -134,8 +143,8 @@ import java.io.File;
      */
     public void upload() {
 
-        FileOutputStream fop = null;
-        File file;
+        FileOutputStream fop = null,fop2 = null;
+        File file,fileAttributes;
         try {
             if (null != uploadedFile) {
                 try {
@@ -144,16 +153,73 @@ import java.io.File;
                 } catch (IOException ex) {
                 }
             }
-            file = new File("D:/Documents/University Docs/Spring 2017/CMP 491 - Senior Design II/Testing/AllfilesForProgram/" + filename + "." + filetype);
+            file = new File("C:/Users/Yomna/Desktop/SD/SD/AllfilesForProgram/" + filename + "." + filetype);
+            
             fop = new FileOutputStream(file);
+            
+            
             if (!file.exists()) {
                 file.createNewFile();
             }
+            
+            FileInputStream iop = null;
+            
             byte[] contentInBytes = text.getBytes();
-
+           
+                    
             fop.write(contentInBytes);
             fop.flush();
             fop.close();
+            
+            
+            //conversion if required
+            if(filetype.equals("csv"))
+            {
+                CSVLoader loader = new CSVLoader();
+                loader.setSource(file);
+                Instances data = loader.getDataSet();
+                
+                ArffSaver saver = new ArffSaver();
+                saver.setInstances(data);
+                
+                saver.setFile(new File("C:/Users/Yomna/Desktop/SD/SD/AllfilesForProgram/"+ filename + "." + "arff"));
+                saver.writeBatch();
+            }
+            
+            
+            ArffLoader loader = new ArffLoader();
+            loader.setSource(new File("C:/Users/Yomna/Desktop/SD/SD/AllfilesForProgram/"+ filename + "." + "arff"));
+            Instances data = loader.getDataSet();//get instances object
+            
+
+            
+            // save CSV
+            CSVSaver saver = new CSVSaver();
+            saver.setInstances(data);//set the dataset we want to convert
+            //and save as CSV
+            saver.setFile(new File("C:/Users/Yomna/Desktop/SD/SD/AllfilesForProgram/" + filename + ".txt"));
+            saver.writeBatch();
+            
+            BufferedReader reader = new BufferedReader(new InputStreamReader(new BufferedInputStream(new FileInputStream(new File("C:/Users/Abdullah/Desktop/SD/AllfilesForProgram/temp/" + filename + ".txt")))));
+            String line = null;
+            line = reader.readLine();
+                    
+                            
+            
+            fileAttributes  = new File("C/Users/Yomna/Documents/NetBeansProjects/ELCD/web/ToDownloadFiles/" + filename + ".txt");
+            fop2 = new FileOutputStream(fileAttributes);
+            if (!fileAttributes.exists()) {
+                fileAttributes.createNewFile();
+            }
+
+            
+            
+            
+            byte[] contentInBytes2 = (line + "\n //ignore the last attribute (it is the class)").getBytes();
+            
+            fop2.write(contentInBytes2);
+            fop2.flush();
+            fop2.close();
 
             text = "Uploaded";
         } catch (FileNotFoundException ex) {
