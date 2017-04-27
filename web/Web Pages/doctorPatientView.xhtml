@@ -7,7 +7,7 @@
     <h:head>
         <meta charset="utf-8"/>
         <link rel="icon" href="../Images/logoSeniorDesign.png"/>
-        <title>ELCD - #{doctorpatients.patientName} - Patient View </title>
+        <title>CPS - #{doctorpatients.patientName} - Patient View </title>
         <link href="../Style Sheets/doctorPatientView.css" rel="stylesheet" type="text/css"/>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
         <script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.2/modernizr.js"></script>
@@ -42,8 +42,13 @@
                                 <f:facet name="header">Is the Result Fatal?</f:facet>
                                 <h:outputText value="#{test.isFatal}"/>
                             </h:column>
+                            <h:column>
+                                <f:facet name="header">Delete Test?</f:facet>
+                                <h:selectBooleanCheckbox value="#{doctorpatientview.deletedTests[test.geneID]}"/>
+                            </h:column>
                         </h:dataTable>
-                        <h:outputText value="#{doctorpatientview.gErrorMsg}"/>
+                        <h:outputText value="#{doctorpatientview.testErrorMsg}"/>
+                        <br/><h:commandButton class="button" id="deleteTests" value="Delete Tests" actionListener="#{doctorpatientview.deleteTests()}"/>
                     </section>
                     <section class="sectionRight">
                         <h2>Comments</h2>
@@ -56,8 +61,13 @@
                                 <f:facet name="header">Comment</f:facet>
                                 <h:outputText value="#{comment.comment}"/>
                             </h:column>
+                            <h:column>
+                                <f:facet name="header">Delete Test?</f:facet>
+                                <h:selectBooleanCheckbox value="#{doctorpatientview.deletedComments[comment.commentID]}"/>
+                            </h:column>
                         </h:dataTable>
-                        <h:outputText value="#{doctorpatientview.cErrorMsg}"/>
+                        <h:outputText value="#{doctorpatientview.commentErrorMsg}"/>
+                        <br/><h:commandButton class="button" id="deleteTests" value="Delete Tests" actionListener="#{doctorpatientview.deleteComments()}"/>
                     </section>
                     <section class="sectionBottom">
                         <h2>Add a New Comment</h2>

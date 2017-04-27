@@ -7,6 +7,7 @@ import Login.Authentification;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
@@ -19,20 +20,24 @@ import javax.sql.rowset.RowSetProvider;
 public class DoctorPatientView {
 
     private ArrayList<Gene> tests;
-    private String gErrorMsg;
+    private String testErrorMsg;
     private ArrayList<Comment> comments;
-    private String cErrorMsg;
+    private String commentErrorMsg;
     private int patientID;
     private String errorMsg;
     private String comment;
     private boolean commentVisibility;
     private CachedRowSet crs;
+    private HashMap<Integer, Boolean> deletedComments;
+    private HashMap<Integer, Boolean> deletedTests;
     
     public DoctorPatientView() {
         this.tests = new ArrayList<>();
         this.comments = new ArrayList<>();
-        this.gErrorMsg = "";
-        this.cErrorMsg = "";
+        this.deletedComments = new HashMap<>();
+        this.deletedTests = new HashMap<>();
+        this.testErrorMsg = "";
+        this.commentErrorMsg = "";
         this.errorMsg = "";
         this.comment = "";
         this.commentVisibility = true;
@@ -51,7 +56,7 @@ public class DoctorPatientView {
 
     public ArrayList<Gene> getTests() {
         this.tests.clear();
-        this.gErrorMsg = "";
+        this.testErrorMsg = "";
         try {
             crs.setCommand("SELECT * FROM Gene WHERE patientID = ?");
             crs.setInt(1, this.patientID);
@@ -67,11 +72,11 @@ public class DoctorPatientView {
                 tests.add(tempGene);
             }
         } catch (SQLException ex) {
-            this.gErrorMsg = "Error in accessing the database: Please try again later";
+            this.testErrorMsg = "Error in accessing the database: Please try again later";
             Logger.getLogger(DoctorPatientView.class.getName()).log(Level.SEVERE, null, ex);
         }
         if(this.tests.isEmpty()) {
-            this.gErrorMsg = "No gene tests to retrieve at this time";
+            this.testErrorMsg = "No gene tests to retrieve at this time";
         }
         return this.tests;
     }
@@ -80,9 +85,25 @@ public class DoctorPatientView {
         this.tests = tests;
     }
 
+    public HashMap<Integer, Boolean> getDeletedComments() {
+        return deletedComments;
+    }
+
+    public void setDeletedComments(HashMap<Integer, Boolean> deletedComments) {
+        this.deletedComments = deletedComments;
+    }
+
+    public HashMap<Integer, Boolean> getDeletedTests() {
+        return deletedTests;
+    }
+
+    public void setDeletedTests(HashMap<Integer, Boolean> deletedTests) {
+        this.deletedTests = deletedTests;
+    }
+
     public ArrayList<Comment> getComments() {
         this.comments.clear();
-        this.cErrorMsg = "";
+        this.commentErrorMsg = "";
         try {
             crs.setCommand("SELECT * FROM Comment WHERE patientID = ?");
             crs.setInt(1, this.patientID);
@@ -98,11 +119,11 @@ public class DoctorPatientView {
                 comments.add(tempComment);
             }
         } catch (SQLException ex) {
-            this.cErrorMsg = "Error in accessing the database: Please try again later";
+            this.commentErrorMsg = "Error in accessing the database: Please try again later";
             Logger.getLogger(DoctorPatientView.class.getName()).log(Level.SEVERE, null, ex);
         }
         if(this.comments.isEmpty()) {
-            this.cErrorMsg = "No gene tests to retrieve at this time";
+            this.commentErrorMsg = "No gene tests to retrieve at this time";
         }
         return this.comments;
     }
@@ -128,20 +149,20 @@ public class DoctorPatientView {
         this.errorMsg = errorMsg;
     }
 
-    public String getgErrorMsg() {
-        return gErrorMsg;
+    public String getTestErrorMsg() {
+        return testErrorMsg;
     }
 
-    public void setgErrorMsg(String gErrorMsg) {
-        this.gErrorMsg = gErrorMsg;
+    public void setTestErrorMsg(String testErrorMsg) {
+        this.testErrorMsg = testErrorMsg;
     }
 
-    public String getcErrorMsg() {
-        return cErrorMsg;
+    public String getCommentErrorMsg() {
+        return commentErrorMsg;
     }
 
-    public void setcErrorMsg(String cErrorMsg) {
-        this.cErrorMsg = cErrorMsg;
+    public void setCommentErrorMsg(String commentErrorMsg) {
+        this.commentErrorMsg = commentErrorMsg;
     }
 
     public String getComment() {
@@ -174,6 +195,40 @@ public class DoctorPatientView {
         }
         finally {
             this.comment = "";
+        }
+    }
+    
+    public void deleteComments() {
+        this.commentErrorMsg = "";
+        try {
+            for(int commentID : deletedComments.keySet()) {
+                if (deletedComments.get(commentID)) {
+                    crs.setCommand("DELETE FROM Comment WHERE commentID = ?");
+                    crs.setInt(1, commentID);
+                    crs.execute();
+                }
+            }
+            this.commentErrorMsg = "Comments Deleted Successfully!";
+        } catch (SQLException ex) {
+            this.commentErrorMsg = "Error in accessing the database: Please try again later";
+            Logger.getLogger(DoctorPatientView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void deleteTests() {
+        this.testErrorMsg = "";
+        try {
+            for(int testID : deletedTests.keySet()) {
+                if (deletedTests.get(testID)) {
+                    crs.setCommand("DELETE FROM Gene WHERE geneID = ?");
+                    crs.setInt(1, testID);
+                    crs.execute();
+                }
+            }
+            this.testErrorMsg = "Tests Deleted Successfully!";
+        } catch (SQLException ex) {
+            this.testErrorMsg = "Error in accessing the database: Please try again later";
+            Logger.getLogger(DoctorPatientView.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }
