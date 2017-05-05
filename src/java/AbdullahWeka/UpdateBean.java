@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package AbdullahWeka;
-//<p id="textOutput">Uploaded file Status:   #{fileUploadBean.text}</p>
+
 
 import Database.Access.DatabaseAccess;
 import java.io.BufferedInputStream;
@@ -19,6 +19,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -42,18 +43,22 @@ import weka.core.converters.CSVSaver;
  */
 @ManagedBean
 @SessionScoped
-public class FileUploadBean {
+public class UpdateBean {
 
     private Part uploadedFile;
     private String text;
     private String filename;
+    private String filenameO;
     private String filetype;
     private String description;
     private String predicts;
-    private String fileUploader;
+    private String fileUpdater;
+    private int updateid;
+    private int fileid;
     private CachedRowSet crs = null;
+    private CachedRowSet crsOriginal = null;
 
-    public FileUploadBean() {
+    public UpdateBean() {
     }
 
     public Part getUploadedFile() {
@@ -62,6 +67,14 @@ public class FileUploadBean {
 
     public String getFiletype() {
         return filetype;
+    }
+
+    public void setFilenameO(String filenameO) {
+        this.filenameO = filenameO;
+    }
+
+    public String getFilenameO() {
+        return filenameO;
     }
 
     public void setFiletype(String filetype) {
@@ -76,14 +89,14 @@ public class FileUploadBean {
         return description;
     }
 
-    public String getFileUploader() {
-        return fileUploader;
+    public String getFileUpdater() {
+        return fileUpdater;
     }
 
-    public void setFileUploader(String fileUploader) {
-        this.fileUploader = fileUploader;
+    public void setFileUpdater(String fileUpdater) {
+        this.fileUpdater = fileUpdater;
     }
-    
+
 
     public String getPredicts() {
         return predicts;
@@ -115,50 +128,70 @@ public class FileUploadBean {
 
     public void updateDB(String user) {
         try {
+            //ArrayList<filesBean> al = new ArrayList<filesBean>();
             DriverManager.registerDriver(new org.apache.derby.jdbc.ClientDriver());
             crs = RowSetProvider.newFactory().createCachedRowSet();
+            crsOriginal= RowSetProvider.newFactory().createCachedRowSet();
             crs.setUrl(DatabaseAccess.DBurl);
             crs.setUsername(DatabaseAccess.DBuser);
             crs.setPassword(DatabaseAccess.DBpass);
-            crs.setCommand("insert into FILES (fileName,fileType,filePrediction,fileDescription,fileUploader) values (?,?,?,?,?)");
-            crs.setString(1, filename);
-            crs.setString(2, filetype);
-            crs.setString(3, predicts);
-            crs.setString(4, description);
-            fileUploader  = user;
-            crs.setString(5, fileUploader);
+            
+            crsOriginal.setUrl(DatabaseAccess.DBurl);
+            crsOriginal.setUsername(DatabaseAccess.DBuser);
+            crsOriginal.setPassword(DatabaseAccess.DBpass);
+            crsOriginal.setCommand("Select * from FILES where filename = ?");
+            crsOriginal.setString(1, filenameO);
+            crsOriginal.execute();
+            filesBean temp = new filesBean();
+            crsOriginal.next();
+            temp.setFilename(crsOriginal.getString("filename"));
+            temp.setFiletype(crsOriginal.getString("filetype"));
+            temp.setPredicts(crsOriginal.getString("fileprediction"));
+            temp.setDescription(crsOriginal.getString("filedescription"));
+            temp.setUploader(crsOriginal.getString("fileUploader"));
+            temp.setID(crsOriginal.getInt("fileid"));
+
+            //al.add(temp);
+            crs.setCommand("insert into EDITED (fileid, fileName,fileType,filePrediction,fileDescription,fileUpdater) values (?,?,?,?,?,?)");
+            crs.setInt(1, temp.getID());
+            fileid = temp.getID();
+            String temp2 = (user.split("@")[0]);
+            fileUpdater = user;
+            filename = temp.getFilename()+"_Edited by_"+temp2;
+            crs.setString(2, filename);
+            crs.setString(3, "arff");
+            crs.setString(4, temp.getPredicts());
+            crs.setString(5, description);
+            crs.setString(6, fileUpdater);
             crs.execute();
+            upload();
         } catch (SQLException ex) {
             Logger.getLogger(FileUploadBean.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
+
+    public void setUpdateid(int updateid) {
+        this.updateid = updateid;
+    }
+
+    public int getUpdateid() {
+        return updateid;
+    }
+
+    public int getFileid() {
+        return fileid;
+    }
+
+    public void setFileid(int fileid) {
+        this.fileid = fileid;
+    }
     
+       public boolean validme(String user){
+        return fileUpdater.equals(user);
+    }
 
-
-    /*conversion from csv to arff or vv
-    
-package weka.api;
-import weka.core.Instances;
-import weka.core.converters.ArffSaver;
-import weka.core.converters.CSVLoader;
-import java.io.File;
-
-    // load CSV
-    CSVLoader loader = new CSVLoader();
-    loader.setSource(new File("/home/likewise-open/ACADEMIC/csstnns/test/TS7/TS7-Venus.csv"));
-    Instances data = loader.getDataSet();//get instances object
-
-    // save ARFF
-    ArffSaver saver = new ArffSaver();
-    saver.setInstances(data);//set the dataset we want to convert
-    //and save as ARFF
-    saver.setFile(new File("/home/likewise-open/ACADEMIC/csstnns/test/TS7/TS7-Venus.arff"));
-    saver.writeBatch();
-
-     */
-    public void upload(String user) {
-
+    public void upload() {
         FileOutputStream fop = null,fop2 = null;
         File file,fileAttributes;
         try {
@@ -169,11 +202,7 @@ import java.io.File;
                 } catch (IOException ex) {
                 }
             }
-            file = new File("C:/Users/Abdullah/Desktop/SD/AllfilesForProgram/" + filename + "." + filetype);
-            
-            
-            
-            
+            file = new File("C:/Users/Abdullah/Desktop/SD/AllfilesForProgram/updated/" + filename + ".arff");
             if (!file.exists()) {
                 file.createNewFile();
             }
@@ -186,25 +215,9 @@ import java.io.File;
             fop.write(contentInBytes);
             fop.flush();
             fop.close();
-            
-            
-            //conversion if required
-            if(filetype.equals("csv"))
-            {
-                CSVLoader loader = new CSVLoader();
-                loader.setSource(file);
-                Instances data = loader.getDataSet();
-                
-                ArffSaver saver = new ArffSaver();
-                saver.setInstances(data);
-                
-                saver.setFile(new File("C:/Users/Abdullah/Desktop/SD/AllfilesForProgram/"+ filename + "." + "arff"));
-                saver.writeBatch();
-            }
-            
-            
+   
             ArffLoader loader = new ArffLoader();
-            loader.setSource(new File("C:/Users/Abdullah/Desktop/SD/AllfilesForProgram/"+ filename + "." + "arff"));
+            loader.setSource(new File("C:/Users/Abdullah/Desktop/SD/AllfilesForProgram/updated/"+ filename + "." + "arff"));
             Instances data = loader.getDataSet();//get instances object
             
 
@@ -213,10 +226,10 @@ import java.io.File;
             CSVSaver saver = new CSVSaver();
             saver.setInstances(data);//set the dataset we want to convert
             //and save as CSV
-            saver.setFile(new File("C:/Users/Abdullah/Desktop/SD/AllfilesForProgram/" + filename + ".txt"));
+            saver.setFile(new File("C:/Users/Abdullah/Desktop/SD/AllfilesForProgram/updated/" + filename + ".txt"));
             saver.writeBatch();
             
-            BufferedReader reader = new BufferedReader(new InputStreamReader(new BufferedInputStream(new FileInputStream(new File("C:/Users/Abdullah/Desktop/SD/AllfilesForProgram/temp/" + filename + ".txt")))));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(new BufferedInputStream(new FileInputStream(new File("C:/Users/Abdullah/Desktop/SD/AllfilesForProgram/updated/" + filename + ".txt")))));
             String line = null;
             line = reader.readLine();
                     
@@ -250,11 +263,8 @@ import java.io.File;
                 if (fop != null) {
                     fop.close();
                 }
-                updateDB(user);
                 FacesContext context = FacesContext.getCurrentInstance();
                 HttpServletResponse response = (HttpServletResponse) context.getExternalContext().getResponse();
-                initialAnalysis ia = new initialAnalysis();
-                ia.analyze(filename);
                 response.sendRedirect("doctorPatientAI.xhtml");
             } catch (IOException e) {
                 e.printStackTrace();

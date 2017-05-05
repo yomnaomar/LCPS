@@ -89,21 +89,22 @@ body footer {
     font-weight: 400;
 }
 .graphs {
-    margin-left: -500px;
+    margin-left: -600px;
     padding: 0px;
 }
 .ibk {
-    margin-right: 300px;
+    margin-left: -150px;
+    margin-right: 0px;
 }
 .sectionLeft {
-    margin-left: -150px;
-    margin-right: 300px;
+    margin-left: -155px;
+    margin-right: 0px;
     padding: 0px;
     clear: left;
     float: left;
 }
 .sectionRight {
-    margin-left: -150px;
+    margin-right: 100px;
     padding: 0px;
     clear: right;
     float: right;

@@ -1,0 +1,2 @@
+status,treat,age,Karn,diag.time,cell,prior,stime
+ //ignore the last attribute (it is the class)

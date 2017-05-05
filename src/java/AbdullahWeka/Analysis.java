@@ -289,6 +289,7 @@ public class Analysis {
             j48.buildClassifier(train);
             eval = new Evaluation(train);
             eval.crossValidateModel(j48, train, 10, new Random(1));
+            
         } catch (Exception ex) {
             Logger.getLogger(Analysis.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -316,7 +317,7 @@ public class Analysis {
         }
     }
 
-    public void analyze(int i) {
+    public void analyze(int i,int y) {
 
         try {
             DriverManager.registerDriver(new org.apache.derby.jdbc.ClientDriver());
@@ -324,8 +325,17 @@ public class Analysis {
             crs.setUrl(DatabaseAccess.DBurl);
             crs.setUsername(DatabaseAccess.DBuser);
             crs.setPassword(DatabaseAccess.DBpass);
-            crs.setCommand("select * from FILES where fileID = ?");
-            crs.setInt(1, i);
+            if(y != 0)
+            {
+                crs.setCommand("select * from EDITED where fileID = ? and editID = ?");
+                crs.setInt(1, i);
+                crs.setInt(2, y);
+            }
+            else
+            {
+                crs.setCommand("select * from FILES where fileID = ?");
+                crs.setInt(1, i);
+            }
             crs.execute();
             if (crs.next()) {
                 fb.setFilename(crs.getString("fileName"));
@@ -334,8 +344,14 @@ public class Analysis {
             }
 
             BufferedReader breader = null;
-            breader = new BufferedReader(new FileReader("C:/Users/Yomna/Desktop/SD/SD/AllfilesForProgram/" + fb.getFilename() + ".arff"));
-
+            if(y != 0)
+            {
+                breader = new BufferedReader(new FileReader("C:/Users/Abdullah/Desktop/SD/AllfilesForProgram/updated/" + fb.getFilename() + ".arff"));
+            }
+            else
+            {
+                breader = new BufferedReader(new FileReader("C:/Users/Abdullah/Desktop/SD/AllfilesForProgram/" + fb.getFilename() + ".arff"));
+            }
             train = new Instances(breader);
             train.setClassIndex(train.numAttributes() - 1);
             breader.close();
@@ -485,7 +501,138 @@ public class Analysis {
   
     }
     
-    
+    public String graphValuesBar1()
+    {
+        double j48C = eval.correct();
+        double nbc = evalNB.correct();
+        double ibkc = evalIBK.correct();
+        
+        double j48nC = eval.incorrect();
+        double nbnc = evalNB.incorrect();
+        double ibknc = evalIBK.incorrect();
+        
+        String temp = "[['','J48', 'Naive Bayes','iBK'],['Total Correct',"+j48C+","+nbc+","+ibkc+"],['Total Incorrect',"+j48nC+","+nbnc+","+ibknc+"]]";
+            return temp;
+  
+    }
+     public String graphValuesBar2()
+    {
+        double j48C = eval.correct();
+        double nbc = evalNB.correct();
+        double ibkc = evalIBK.correct();
+        
+        double j48nC = eval.incorrect();
+        double nbnc = evalNB.incorrect();
+        double ibknc = evalIBK.incorrect();
+        
+        String temp = "[['','J48', 'Naive Bayes','iBK'],['True Positives Rate',"+eval.weightedTruePositiveRate()+","+evalNB.weightedTruePositiveRate()+","+evalIBK.weightedTruePositiveRate()+"],"
+                + "['False Positve Rate',"+eval.weightedFalsePositiveRate()+","+evalNB.weightedFalsePositiveRate()+","+evalIBK.weightedFalsePositiveRate()+"]]";
+
+      
+            return temp;
+  
+    }
+     
+     
+     public String graphValuesLine(int num){
+         String type = "";
+        Evaluation eva;
+        if(num == 1){
+            eva = eval;
+        type="J48";}
+        else if(num == 2){
+            eva = evalNB;type="NB";}
+        
+        else {type="iBK";
+            eva = evalIBK;
+        }
+         String temp = "[['year','"+type+"'],";
+        for (int i = 0; i < train.numClasses(); i++) {
+                temp += "["+eva.falsePositiveRate(i)+","+eva.truePositiveRate(i)+"]";
+                if (i != train.numClasses()-1)
+                    temp+=",";
+            }
+         temp+="]";
+         
+         return temp;
+         
+         
+         /*[
+          ['Year', 'Sales'],
+          ['0.5523432',  0.5123424],
+          [0.9945,  0.777],
+          [0.345345, 0.753232],
+          [0.3451435,  0.123134]
+        ]*/
+         
+         
+         
+         
+         
+         
+         //[
+        //          [0, 0, 0,6],    [1, 10, 5,11],   [2, 23, 15,12],  [3, 17, 9,20],   [4, 18, 10,12],  [5, 9, 5,2],
+         //         [6, 11, 3,5],   [7, 27, 19,25],  [8, 33, 25,6],  [9, 40, 32,9],  [10, 32, 24,10], [11, 35, 27,11]
+          //      ]
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         /*function drawAxisTickColors() {
+                var data = new google.visualization.DataTable();
+                data.addColumn('number', 'X');
+                data.addColumn('number', 'J48');
+
+                data.addRows(#{analysis.graphValuesLine()});
+
+                var options = {
+                    'width': 1500,
+                    'height': 600,
+                  hAxis: {
+                    title: 'False Postive Rate (FP)',
+                    textStyle: {
+                      color: '#01579b',
+                      fontSize: 20,
+                      fontName: 'Arial',
+                      bold: true,
+                      italic: true
+                    },
+                    titleTextStyle: {
+                      color: '#01579b',
+                      fontSize: 16,
+                      fontName: 'Arial',
+                      bold: false,
+                      italic: true
+                    }
+                  },
+                  vAxis: {
+                    title: 'True Postive Rate (TP)',
+                    textStyle: {
+                      color: '#1a237e',
+                      fontSize: 24,
+                      bold: true
+                    },
+                    titleTextStyle: {
+                      color: '#1a237e',
+                      fontSize: 24,
+                      bold: true
+                    }
+                  },
+                  colors: ['#77e5a9', '#02c95c']
+                };
+                var chart = new google.visualization.LineChart(document.getElementById('tpvsfp'));
+                chart.draw(data, options);
+    }*/
+     }
     
     
     

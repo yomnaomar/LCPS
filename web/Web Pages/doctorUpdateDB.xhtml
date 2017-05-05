@@ -31,31 +31,18 @@
                             <table>
                                 <tr>
                                     <td>File:</td>
-                                    <td><h:inputFile class="button" id="file" value="#{fileUploadBean.uploadedFile}"/></td>
+                                    <td><h:inputFile class="button" id="file" value="#{updateBean.uploadedFile}"/></td>
                                 </tr>
                                 <tr>
-                                    <td>File Name:</td>
-                                    <td><h:inputText id="filename" value="#{fileUploadBean.filename}"/></td>
+                                    <td>Original File Name:</td>
+                                    <td><h:inputText id="filename" value="#{updateBean.filenameO}"/></td>
                                 </tr>
                                 <tr>
-                                    <td>File Type:</td>
-                                    <td><h:selectOneListbox class="button" value="#{fileUploadBean.filetype}">
-                                            <f:selectItem itemValue="arff" itemLabel="ARFF"/>
-                                            <f:selectItem itemValue="csv" itemLabel="CSV"/>
-                                        </h:selectOneListbox></td>
-                                     <td> <a href="../ToDownloadFiles/arffFile.arff" download="ArffFormat">ARFF Template</a>
-                                         <pre><a href="../ToDownloadFiles/csvFile.csv" download="CSVFormat">CSV Template</a></pre></td>  
-                                </tr>
-                                <tr>
-                                    <td>Short Description of the Dataset:</td>
-                                    <td><h:inputText id="desc" value="#{fileUploadBean.description}"/></td>
-                                </tr>
-                                <tr>
-                                    <td>What Does it Predict?</td>
-                                    <td><h:inputText id="predics" value="#{fileUploadBean.predicts}"/></td>
+                                    <td>Short Description of the Changes Made:</td>
+                                    <td><h:inputText id="desc" value="#{updateBean.description}"/></td>
                                 </tr>
                             </table>
-                            <br/><h:commandButton class="button" id="button" value="Upload" action="#{fileUploadBean.upload(authentification.email)}"/>
+                            <br/><h:commandButton class="button" id="button" value="Upload" action="#{updateBean.updateDB(authentification.email)}"/>
                         </p>
                     </h:form>
                     <footer>CMP 491 - Senior Design Project - American University of Sharjah © 2017</footer>

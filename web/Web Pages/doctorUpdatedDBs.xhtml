@@ -28,38 +28,26 @@
                     <nav><a href="doctorMain.xhtml" class="navHome">Home</a> &gt; <a href="doctorPatientView.xhtml" class="navHome">Patient <h:outputText value="#{doctorpatients.patientName}"/></a> &gt; <a href="doctorPatientAI.xhtml" class="navHome">AI Analysis</a></nav>
                     <h:form>
                         <h3>Databases Available To Use:</h3>
-                        <h:dataTable var="files" value="#{manageFiles.files}" headerClass="tableheader" rowClasses="oddrow, evenrow">                   
+                        <h:dataTable var="files" value="#{manageFiles.updatedFiles}" headerClass="tableheader" rowClasses="oddrow, evenrow">                   
                             <h:column>
                                 <f:facet name="header">Dataset Name</f:facet>
                                 <h:outputText value="#{files.filename}"/>
                             </h:column>
                             <h:column>
-                                <f:facet name="header">Uploader</f:facet>
-                                <h:outputText value="#{files.uploader}"/>
+                                <f:facet name="header">Updated By</f:facet>
+                                <h:outputText value="#{files.fileUpdater}"/>
                             </h:column>
                             <h:column>
-                                <f:facet name="header">Predicts</f:facet>
-                                <h:outputText value="#{files.predicts}"/>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">Description</f:facet>
+                                <f:facet name="header">What is updated</f:facet>
                                 <h:outputText value="#{files.description}"/>
                             </h:column>
                             <h:column>
                                 <f:facet name="header">Analyze Dataset</f:facet>
-                                <h:commandButton class="button" value="Go!" action="#{manageFiles.chosen(files.ID)}"/>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">Editions</f:facet>
-                                <h:commandButton class="button" value="View"  actionListener="#{manageFiles.editions(files.ID)}"/>
+                                <h:commandButton class="button" value="Go!" action="#{manageFiles.setUchosen(files.updateid)}"/>
                             </h:column>
                             <h:column>
                                 <f:facet name="header">Delete</f:facet>
-                                <h:commandButton class="button" value="Delete"  rendered="#{files.validme(authentification.email) == true}" actionListener="#{manageFiles.deletes(files.ID)}"/>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">Download</f:facet>
-                                <h:commandButton class="button" value="Downlaod"/>
+                                <h:commandButton class="button" value="Delete"  rendered="#{files.validme(authentification.email) == true}" actionListener="#{manageFiles.deletesU(files.updateid)}"/>
                             </h:column>
                         </h:dataTable>
                         <h:commandButton class="button" value="Upload New Database" action="doctorUploadDB.xhtml"/>  

@@ -1,0 +1,14 @@
+@relation (Add relation name here)
+
+@attribute (Name of the attribute) (Type of the attribute - Numeric/Nominal)
+
+%Example @attribute Status Numeric
+@attribute
+...
+...
+@attribute Class {...} 
+%Leave the class attribute for the end 
+
+@data
+....
+%Enter data here in csv along with its classification
