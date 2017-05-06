@@ -1,96 +1,110 @@
 @charset "utf-8";
 body {
-	background-image: url(../Images/siteBackgroud.png);
-	background-size: cover;
-	background-repeat: no-repeat;
-	background-attachment: fixed;
+    background-image: url(../Images/siteBackgroud.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 body header {
-	text-align: center;
-	font-family: iceberg;
-	font-style: normal;
-	font-weight: 400;
-	font-size: xx-large;
-	margin-top: 1em;
-	color: #000000;
-	text-decoration: none;
+    text-align: center;
+    font-family: iceberg;
+    font-style: normal;
+    font-weight: 400;
+    font-size: xx-large;
+    margin-top: 1em;
+    color: #000000;
+    text-decoration: none;
 }
 header a h2 {
-	color: #000000;
-	text-decoration: none;
-	text-align: center;
+    color: #000000;
+    text-decoration: none;
+    text-align: center;
 }
 body header a {
-	text-decoration: none;
+    text-decoration: none;
 }
 
 body nav {
-	font-family: iceberg;
-	font-style: normal;
-	font-weight: 400;
-	text-align: left;
-	font-size: large;
-	color: #48A1AF;
-	font-weight: bold;
-	margin-left: 10em;
-	background-color: #000000;
-	margin-right: 10em;
+    font-family: iceberg;
+    font-style: normal;
+    font-weight: 400;
+    text-align: left;
+    font-size: large;
+    color: #48A1AF;
+    font-weight: bold;
+    margin-left: 10em;
+    background-color: #000000;
+    margin-right: 10em;
 }
 
 
 body nav a {
-	text-decoration: none;
-	color: #48A1AF;
+    text-decoration: none;
+    color: #48A1AF;
 }
 
 .navHome {
-	-webkit-transition: all 0.5s ease-in-out;
-	-o-transition: all 0.5s ease-in-out;
-	transition: all 0.5s ease-in-out;
+    -webkit-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
 }
 body div {
-	color: #000000;
-	font-family: iceberg;
-	font-style: normal;
-	font-weight: 400;
-	font-size: large;
-	margin-left: 10em;
-	margin-right: 10em;
+    color: #000000;
+    font-family: iceberg;
+    font-style: normal;
+    font-weight: 400;
+    font-size: large;
+    margin-left: 10em;
+    margin-right: 10em;
 }
 
 .navHome:hover {
-	color: #FFFFFF;
+    color: #FFFFFF;
 }
 .navAbout {
-	-webkit-transition: all 0.5s ease-in-out;
-	-o-transition: all 0.5s ease-in-out;
-	transition: all 0.5s ease-in-out;
+    -webkit-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
 }
 .navAbout:hover {
-	color: #FFFFFF;
+    color: #FFFFFF;
 }
 header a img {
-	margin-top: -1em;
-	margin-bottom: 0.5em;
+    margin-top: -1em;
+    margin-bottom: 0.5em;
 }
 body footer {
-	text-align: center;
-	font-family: iceberg;
-	font-style: normal;
-	font-weight: 400;
-	font-size: small;
-	margin-top: 19em;
+    text-align: center;
+    font-family: iceberg;
+    font-style: normal;
+    font-weight: 400;
+    font-size: small;
+    margin-top: 19em;
 }
-
 .no-js #loader { display: none;  }
 .js #loader { display: block; position: absolute; left: 100px; top: 0; }
 .se-pre-con {
-	position: fixed;
-	left: 0px;
-	top: 0px;
-	width: 100%;
-	height: 100%;
-	z-index: 9999;
-	background: url(../Images/loader.gif) center no-repeat #fff;
-        background-size: cover;
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background: url(../Images/loader.gif) center no-repeat #fff;
+    background-size: cover;
+}
+.logout {
+    font-family: iceberg;
+    font-style: normal;
+    font-weight: 400;
+    text-align: center;
+    -webkit-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+    font-size: large;
+    color: #676767;
+    text-decoration: none;
+}
+.logout:hover {
+    color: #FFFFFF;
 }

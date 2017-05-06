@@ -79,7 +79,7 @@ body footer {
     background-size: cover;
 }
 .button {
-    color: #48A1AF;
+    color: #000000;
     padding: 10px 20px;
     text-align: center;
     text-decoration: none;
@@ -112,4 +112,19 @@ body footer {
 .sectionBottom {
     clear: both;
     margin-top: 3em;
+}
+.logout {
+    font-family: iceberg;
+    font-style: normal;
+    font-weight: 400;
+    text-align: center;
+    -webkit-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+    font-size: large;
+    color: #676767;
+    text-decoration: none;
+}
+.logout:hover {
+    color: #FFFFFF;
 }

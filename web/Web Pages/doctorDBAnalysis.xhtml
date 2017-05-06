@@ -36,7 +36,7 @@
             google.charts.setOnLoadCallback(drawMultSeries);
             google.charts.setOnLoadCallback(drawMultSeries2);
             google.charts.setOnLoadCallback(drawAxisTickColors);
-            
+
             function drawChart() {
             #{analysis.analyze(manageFiles.chosen,manageFiles.uchosen)};
                 var data = google.visualization.arrayToDataTable(#{analysis.graphValues()});
@@ -53,7 +53,7 @@
                 var chart = new google.visualization.ScatterChart(document.getElementById('chart_div'));
                 chart.draw(data, options);
             }
-             function drawChart1() {
+            function drawChart1() {
                 var data = google.visualization.arrayToDataTable(#{analysis.graphValuesCorrect(1)});
                 var data2 = google.visualization.arrayToDataTable(#{analysis.graphValuesCorrect(2)});
                 var data3 = google.visualization.arrayToDataTable(#{analysis.graphValuesCorrect(3)});
@@ -74,7 +74,7 @@
                 chart2.draw(data2, options);
                 chart3.draw(data3, options);
             }
-             function drawChart2() {
+            function drawChart2() {
                 var data = google.visualization.arrayToDataTable(#{analysis.graphValuesIncorrect(1)});
                 var data1 = google.visualization.arrayToDataTable(#{analysis.graphValuesIncorrect(2)});
                 var data2 = google.visualization.arrayToDataTable(#{analysis.graphValuesIncorrect(3)});
@@ -101,55 +101,55 @@
                 var options = {
                     'width': 600,
                     'height': 500,
-                    backgroundColor: { fill:'transparent' },
-                  chart: {
-                    title: 'Correct ss Incorrect',
-                    subtitle: 'Js8, NB, and iBK',
-                  }
+                    backgroundColor: {fill: 'transparent'},
+                    chart: {
+                        title: 'Correct ss Incorrect',
+                        subtitle: 'Js8, NB, and iBK',
+                    }
                 };
 
                 var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
 
                 chart.draw(data, google.charts.Bar.convertOptions(options));
-              }
-               function drawMultSeries2() {
+            }
+            function drawMultSeries2() {
                 var data = google.visualization.arrayToDataTable(#{analysis.graphValuesBar2()});
 
                 var options = {
                     'width': 600,
                     'height': 500,
-                    backgroundColor: { fill:'transparent' },
-                  chart: {
-                    title: 'Correct ss Incorrect',
-                    subtitle: 'Js8, NB, and iBK',
-                  }
+                    backgroundColor: {fill: 'transparent'},
+                    chart: {
+                        title: 'Correct ss Incorrect',
+                        subtitle: 'Js8, NB, and iBK',
+                    }
                 };
                 var chart = new google.charts.Bar(document.getElementById('columnchart_material2'));
                 chart.draw(data, google.charts.Bar.convertOptions(options));
-              }
-              
-            
-    function drawAxisTickColors() {
-        var data = google.visualization.arrayToDataTable(#{analysis.graphValuesLine(1)});
-        var data1 = google.visualization.arrayToDataTable(#{analysis.graphValuesLine(2)});
-        var data2 = google.visualization.arrayToDataTable(#{analysis.graphValuesLine(3)});
+            }
 
-        var options = {
-          title: 'Roc Curve',
-          'width': 600,
-           'height': 500,
-           'backgroundColor': 'transparent',
-          legend: { position: 'bottom' }
-        };
 
-        var chart = new google.visualization.LineChart(document.getElementById('tpvsfp'));
-        var chart2 = new google.visualization.LineChart(document.getElementById('tpvsfp2'));
-        var chart3 = new google.visualization.LineChart(document.getElementById('tpvsfp3'));
+            function drawAxisTickColors() {
+                var data = google.visualization.arrayToDataTable(#{analysis.graphValuesLine(1)});
+                var data1 = google.visualization.arrayToDataTable(#{analysis.graphValuesLine(2)});
+                var data2 = google.visualization.arrayToDataTable(#{analysis.graphValuesLine(3)});
 
-        chart.draw(data, options);
-                        chart2.draw(data1, options);
+                var options = {
+                    title: 'Roc Curve',
+                    'width': 600,
+                    'height': 500,
+                    'backgroundColor': 'transparent',
+                    legend: {position: 'bottom'}
+                };
+
+                var chart = new google.visualization.LineChart(document.getElementById('tpvsfp'));
+                var chart2 = new google.visualization.LineChart(document.getElementById('tpvsfp2'));
+                var chart3 = new google.visualization.LineChart(document.getElementById('tpvsfp3'));
+
+                chart.draw(data, options);
+                chart2.draw(data1, options);
                 chart3.draw(data2, options);
-      }
+            }
         </script>
     </h:head>
     <h:body onload="LoadMyJs()">
@@ -159,7 +159,7 @@
             <nav><a href="doctorMain.xhtml" class="navHome">Home</a> &gt; <a href="doctorPatientView.xhtml" class="navHome">Patient <h:outputText value="#{doctorpatients.patientName}"/></a> &gt; <a href="doctorPatientAI.xhtml" class="navHome">AI Analysis</a> &gt; <a href="doctorDBAnalysis.xhtml" class="navHome">Dataset Analysis</a></nav>
             <div>
                 <h:form>                  
-                      #{analysis.analyze(manageFiles.chosen,manageFiles.uchosen)}
+                    #{analysis.analyze(manageFiles.chosen,manageFiles.uchosen)}
                     <h3>Highest Accuracy of Correct Classifications is with <i>The <h:outputText value="#{analysis.chosenAlgo}"/> Algorithm with <h:outputText value="#{analysis.correctPercentage}"/> %</i></h3>
                     <h4>With #{analysis.extraTestInfo} </h4>
                     <h3>Test the database on your patient: <h:commandButton class="button" value="Analyze" action="doctorTestPatient.xhtml"/></h3>
@@ -170,32 +170,31 @@
                     <h:commandButton class="button" id="selected" value="Select" onclick="LoadMyJs(drawChart())" />
                 </h:form>
                 <p class="graphs" id="chart_div"/>
-                <div class="sectionLeft">
-                    <h3>The J48 Algorithm <h:commandButton  value="Analyze J48"/></h3>
-                    <p class="graphs" id="donutchart"/>
-                    <p class="graphs" id="donutchart2"/>
-
-
-                </div>
-                <div class="sectionRight">
-                <h3>The Naive Bayes Algorithm   <h:commandButton value="Analyze NB"/></h3>
-                <p class="graphs" id="donutchartNB"/>
-                <p class="graphs" id="donutchart2NB"/>
-                                    <p class="graphs" id="columnchart_material"/>
-                    <p class="graphs" id="columnchart_material2"/>
-                </div>
-                <div class="ibk">
-                <h3 class="">The iBK Algorithm <h:commandButton  value="Analyze iBK"/></h3>
-                <p class="ibk" id="donutchartIBK"/>
-                <p class="ibk" id="donutchart2IBK"/>
-                                    <p class="graphs" id="tpvsfp"/>
-                <p class="graphs" id="tpvsfp2"/>
-                <p class="graphs" id="tpvsfp3"/>
-                
-                </div>
-                <div class="sectionBottom"><p class="graphs" id="piechart_div"/></div>
+                <h:form>
+                    <div class="sectionLeft">
+                        <h3>The J48 Algorithm <h:commandButton class="button" value="Analyze J48"/></h3>
+                        <p class="graphs" id="donutchart"/>
+                        <p class="graphs" id="donutchart2"/>
+                    </div>
+                    <div class="sectionRight">
+                        <h3>The Naive Bayes Algorithm <h:commandButton class="button" value="Analyze NB"/></h3>
+                        <p class="graphs" id="donutchartNB"/>
+                        <p class="graphs" id="donutchart2NB"/>
+                        <p class="graphs" id="columnchart_material"/>
+                        <p class="graphs" id="columnchart_material2"/>
+                    </div>
+                    <div class="ibk">
+                        <h3 class="">The iBK Algorithm <h:commandButton class="button" value="Analyze iBK"/></h3>
+                        <p class="ibk" id="donutchartIBK"/>
+                        <p class="ibk" id="donutchart2IBK"/>
+                        <p class="graphs" id="tpvsfp"/>
+                        <p class="graphs" id="tpvsfp2"/>
+                        <p class="graphs" id="tpvsfp3"/>
+                    </div>
+                </h:form>
+            <div class="sectionBottom"><p class="graphs" id="piechart_div"/></div>
             </div>
-            <footer class="">CMP 491 - Senior Design Project - American University of Sharjah © 2017</footer>
+            <footer><p><a href="../index.xhtml" class="logout">Logout</a></p>CMP 491 - Senior Design Project - American University of Sharjah © 2017</footer>
         </f:view>
     </h:body>
 </html>

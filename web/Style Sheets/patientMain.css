@@ -106,7 +106,7 @@ body footer {
     float: right;
 }
 .button {
-    color: #48A1AF;
+    color: #000000;
     padding: 10px 20px;
     text-align: center;
     text-decoration: none;
@@ -133,4 +133,19 @@ body footer {
     background: #48A1AF;
     color: #FFFFFF;
     padding: 16px;
+}
+.logout {
+    font-family: iceberg;
+    font-style: normal;
+    font-weight: 400;
+    text-align: center;
+    -webkit-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+    font-size: large;
+    color: #676767;
+    text-decoration: none;
+}
+.logout:hover {
+    color: #FFFFFF;
 }

@@ -81,7 +81,6 @@ body footer {
     font-size: small;
     margin-top: 15em;
 }
-
 .no-js #loader { display: none;  }
 .js #loader { display: block; position: absolute; left: 100px; top: 0; }
 .se-pre-con {
@@ -93,4 +92,18 @@ body footer {
     z-index: 9999;
     background: url(../Images/loader.gif) center no-repeat #fff;
     background-size: cover;
+}
+.logout {
+    font-family: iceberg;
+    font-style: normal;
+    font-weight: 400;
+    text-align: center;
+    -webkit-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+    font-size: large;
+    color: #676767;
+}
+.logout:hover {
+    color: #FFFFFF;
 }

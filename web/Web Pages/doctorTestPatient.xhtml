@@ -34,17 +34,14 @@
             <header><a href="doctorMain.xhtml"><img src="../Images/logoSeniorDesign.png" width="150" height="150" alt=""/><h3>Enter #{doctorpatients.patientName}'s Data</h3></a></header>
             <nav><a href="doctorMain.xhtml" class="navHome">Home</a> &gt; <a href="doctorPatientView.xhtml" class="navHome">Patient <h:outputText value="#{doctorpatients.patientName}"/></a> &gt; <a href="doctorPatientAI.xhtml" class="navHome">AI Analysis</a> &gt; <a href="doctorDBAnalysis.xhtml" class="navHome">Dataset Analysis</a> &gt; <a href="doctorTestPatient.xhtml" class="navHome">Enter Patient Data</a></nav>
             <div>
-
                 <center>
-
                     <h:form> 
                         <h3>Patient Data (Comma Separated Values):</h3>
                         <h:inputTextarea class="button" rows="10" cols = "50" id="patientinfo" value="#{testingPatient.patientData}"/><br/>
                         <h:commandButton class="button" id="button" value="Predict" action="#{testingPatient.performPatientAnalysis(analysis.train,analysis.j48,analysis.naiveBayes,analysis.ibk,analysis.fb,analysis.chosenAlgo)}"/>
                     </h:form>
-                    <p></p>
                     Click <a href="../ToDownloadFiles/#{analysis.fb.filename}.txt" download="mytextdocument"> Here </a>to know all the attributes required and the format.
-                    <footer>CMP 491 - Senior Design Project - American University of Sharjah © 2017</footer>
+                    <footer><p><a href="../index.xhtml" class="logout">Logout</a></p>CMP 491 - Senior Design Project - American University of Sharjah © 2017</footer>
                 </center>
             </div>
         </f:view>
