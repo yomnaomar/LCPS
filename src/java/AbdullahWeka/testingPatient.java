@@ -41,7 +41,7 @@ public class testingPatient {
     }
 
     public String getPrediction() {
-        return prediction;
+        return prediction.replaceAll("-inf", "0");
     }
 
     public Instances getTrained() {
@@ -94,7 +94,7 @@ public class testingPatient {
             String completeFile = "";
             int start, end;
             BufferedReader reader
-                    = new BufferedReader(new FileReader("C:/Users/Yomna/Desktop/SD/SD/AllfilesForProgram/"+ fb.getFilename()+".arff"));
+                    = new BufferedReader(new FileReader("C:/Users/Abdullah/Desktop/SD/AllfilesForProgram/"+ fb.getFilename()+".arff"));
 
             while ((line = reader.readLine()) != null) {
                 completeFile += line;
@@ -117,7 +117,7 @@ public class testingPatient {
 
             FileOutputStream fop = null;
             File file = null;
-            file = new File("C:/Users/Yomna/Desktop/SD/SD/AllfilesForProgram/Test.arff");
+            file = new File("C:/Users/Abdullah/Desktop/SD/AllfilesForProgram/Test.arff");
             fop = new FileOutputStream(file);
             if (!file.exists()) {
                 file.createNewFile();
@@ -133,12 +133,13 @@ public class testingPatient {
 
             //J48 smo = new J48();
             //smo.buildClassifier(trainDataset);
-            source2 = new DataSource("C:/Users/Yomna/Desktop/SD/SD/AllfilesForProgram/Test.arff");
+            source2 = new DataSource("C:/Users/Abdullah/Desktop/SD/AllfilesForProgram/Test.arff");
 
             Instances testDataset = source2.getDataSet();
             testDataset.setClassIndex(testDataset.numAttributes() - 1);
             Instance newInst = testDataset.instance(0);
             int predSMO;
+            
             if (chosen.equals("J48"))
                 predSMO = (int) j48.classifyInstance(newInst);
             else if (chosen.equals("NaiveBayes"))

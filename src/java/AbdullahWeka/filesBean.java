@@ -18,6 +18,7 @@ public class filesBean implements Serializable{
     private String filetype;
     private String description;
     private String predicts;
+    private String uploader;
     private int ID;
     /**
      * Creates a new instance of filesBean
@@ -31,6 +32,14 @@ public class filesBean implements Serializable{
 
     public void setFilename(String filename) {
         this.filename = filename;
+    }
+
+    public void setUploader(String uploader) {
+        this.uploader = uploader;
+    }
+
+    public String getUploader() {
+        return uploader;
     }
 
     public String getFiletype() {
@@ -65,6 +74,9 @@ public class filesBean implements Serializable{
         this.ID = ID;
     }
     
+    public boolean validme(String user){
+        return uploader.equals(user);
+    }
     
     
 }
