@@ -202,7 +202,7 @@ public class UpdateBean {
                 } catch (IOException ex) {
                 }
             }
-            file = new File("C:/Users/Abdullah/Desktop/SD/AllfilesForProgram/updated/" + filename + ".arff");
+            file = new File("C:/Users/Yomna/Desktop/SD/SD/AllfilesForProgram/updated/" + filename + ".arff");
             if (!file.exists()) {
                 file.createNewFile();
             }
@@ -217,7 +217,7 @@ public class UpdateBean {
             fop.close();
    
             ArffLoader loader = new ArffLoader();
-            loader.setSource(new File("C:/Users/Abdullah/Desktop/SD/AllfilesForProgram/updated/"+ filename + "." + "arff"));
+            loader.setSource(new File("C:/Users/Yomna/Desktop/SD/SD/AllfilesForProgram/updated/"+ filename + "." + "arff"));
             Instances data = loader.getDataSet();//get instances object
             
 
@@ -226,16 +226,16 @@ public class UpdateBean {
             CSVSaver saver = new CSVSaver();
             saver.setInstances(data);//set the dataset we want to convert
             //and save as CSV
-            saver.setFile(new File("C:/Users/Abdullah/Desktop/SD/AllfilesForProgram/updated/" + filename + ".txt"));
+            saver.setFile(new File("C:/Users/Yomna/Desktop/SD/SD/AllfilesForProgram/updated/" + filename + ".txt"));
             saver.writeBatch();
             
-            BufferedReader reader = new BufferedReader(new InputStreamReader(new BufferedInputStream(new FileInputStream(new File("C:/Users/Abdullah/Desktop/SD/AllfilesForProgram/updated/" + filename + ".txt")))));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(new BufferedInputStream(new FileInputStream(new File("C:/Users/Yomna/Desktop/SD/SD/AllfilesForProgram/updated/" + filename + ".txt")))));
             String line = null;
             line = reader.readLine();
                     
                             
             
-            fileAttributes  = new File("C:/Users/Abdullah/Documents/NetBeansProjects/ELCD_GitHub/web/ToDownloadFiles/" + filename + ".txt");
+            fileAttributes  = new File("C:/Users/Yomna/Documents/NetBeansProjects/ELCD/web/ToDownloadFiles/" + filename + ".txt");
             fop2 = new FileOutputStream(fileAttributes);
             if (!fileAttributes.exists()) {
                 fileAttributes.createNewFile();

@@ -169,7 +169,7 @@ import java.io.File;
                 } catch (IOException ex) {
                 }
             }
-            file = new File("C:/Users/Abdullah/Desktop/SD/AllfilesForProgram/" + filename + "." + filetype);
+            file = new File("C:/Users/Yomna/Desktop/SD/SD/AllfilesForProgram/" + filename + "." + filetype);
             
             
             
@@ -198,13 +198,13 @@ import java.io.File;
                 ArffSaver saver = new ArffSaver();
                 saver.setInstances(data);
                 
-                saver.setFile(new File("C:/Users/Abdullah/Desktop/SD/AllfilesForProgram/"+ filename + "." + "arff"));
+                saver.setFile(new File("C:/Users/Yomna/Desktop/SD/SD/AllfilesForProgram/"+ filename + "." + "arff"));
                 saver.writeBatch();
             }
             
             
             ArffLoader loader = new ArffLoader();
-            loader.setSource(new File("C:/Users/Abdullah/Desktop/SD/AllfilesForProgram/"+ filename + "." + "arff"));
+            loader.setSource(new File("C:/Users/Yomna/Desktop/SD/SD/AllfilesForProgram/"+ filename + "." + "arff"));
             Instances data = loader.getDataSet();//get instances object
             
 
@@ -213,10 +213,10 @@ import java.io.File;
             CSVSaver saver = new CSVSaver();
             saver.setInstances(data);//set the dataset we want to convert
             //and save as CSV
-            saver.setFile(new File("C:/Users/Abdullah/Desktop/SD/AllfilesForProgram/" + filename + ".txt"));
+            saver.setFile(new File("C:/Users/Yomna/Desktop/SD/SD/AllfilesForProgram/" + filename + ".txt"));
             saver.writeBatch();
             
-            BufferedReader reader = new BufferedReader(new InputStreamReader(new BufferedInputStream(new FileInputStream(new File("C:/Users/Abdullah/Desktop/SD/AllfilesForProgram/temp/" + filename + ".txt")))));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(new BufferedInputStream(new FileInputStream(new File("C:/Users/Yomna/Desktop/SD/SD/AllfilesForProgram/temp/" + filename + ".txt")))));
             String line = null;
             line = reader.readLine();
             fileAttributes  = new File("C:/Users/Yomna/Documents/NetBeansProjects/ELCD/web/ToDownloadFiles/" + filename + ".txt");

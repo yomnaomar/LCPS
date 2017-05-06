@@ -87,14 +87,14 @@ public class testingPatient {
             //DataSource source = null;
             DataSource source2 = null;
 
-            //source = new DataSource("C:/Users/Abdullah/Desktop/SD/AllfilesForProgram/LungGenes.arff");
+            //source = new DataSource("C:/Users/Yomna/Desktop/SD/SD/AllfilesForProgram/LungGenes.arff");
             //Instances trainDataset = source.getDataSet();
             //trainDataset.setClassIndex(trainDataset.numAttributes()-1);
             String line = null, toAdd = "";
             String completeFile = "";
             int start, end;
             BufferedReader reader
-                    = new BufferedReader(new FileReader("C:/Users/Abdullah/Desktop/SD/AllfilesForProgram/"+ fb.getFilename()+".arff"));
+                    = new BufferedReader(new FileReader("C:/Users/Yomna/Desktop/SD/SD/AllfilesForProgram/"+ fb.getFilename()+".arff"));
 
             while ((line = reader.readLine()) != null) {
                 completeFile += line;
@@ -117,7 +117,7 @@ public class testingPatient {
 
             FileOutputStream fop = null;
             File file = null;
-            file = new File("C:/Users/Abdullah/Desktop/SD/AllfilesForProgram/Test.arff");
+            file = new File("C:/Users/Yomna/Desktop/SD/SD/AllfilesForProgram/Test.arff");
             fop = new FileOutputStream(file);
             if (!file.exists()) {
                 file.createNewFile();
@@ -133,7 +133,7 @@ public class testingPatient {
 
             //J48 smo = new J48();
             //smo.buildClassifier(trainDataset);
-            source2 = new DataSource("C:/Users/Abdullah/Desktop/SD/AllfilesForProgram/Test.arff");
+            source2 = new DataSource("C:/Users/Yomna/Desktop/SD/SD/AllfilesForProgram/Test.arff");
 
             Instances testDataset = source2.getDataSet();
             testDataset.setClassIndex(testDataset.numAttributes() - 1);

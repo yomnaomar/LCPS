@@ -68,7 +68,7 @@ public class initialAnalysis {
     
          try {
             BufferedReader breader = null;
-            breader = new BufferedReader(new FileReader("C:/Users/Abdullah/Desktop/SD/AllfilesForProgram/"+filename+".arff"));
+            breader = new BufferedReader(new FileReader("C:/Users/Yomna/Desktop/SD/SD/AllfilesForProgram/"+filename+".arff"));
             Instances toTrain = new Instances (breader);
             breader.close();
             
@@ -86,7 +86,7 @@ public class initialAnalysis {
             
             ArffSaver saver = new ArffSaver();
             saver.setInstances(train);
-            saver.setFile(new File("C:/Users/Abdullah/Desktop/SD/AllfilesForProgram/"+filename+"SUCCESSDED.arff"));
+            saver.setFile(new File("C:/Users/Yomna/Desktop/SD/SD/AllfilesForProgram/"+filename+"SUCCESSDED.arff"));
             saver.writeBatch();
             
     }catch (FileNotFoundException ex) {

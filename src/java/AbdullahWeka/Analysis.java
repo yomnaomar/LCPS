@@ -346,11 +346,11 @@ public class Analysis {
             BufferedReader breader = null;
             if(y != 0)
             {
-                breader = new BufferedReader(new FileReader("C:/Users/Abdullah/Desktop/SD/AllfilesForProgram/updated/" + fb.getFilename() + ".arff"));
+                breader = new BufferedReader(new FileReader("C:/Users/Yomna/Desktop/SD/SD/AllfilesForProgram/updated/" + fb.getFilename() + ".arff"));
             }
             else
             {
-                breader = new BufferedReader(new FileReader("C:/Users/Abdullah/Desktop/SD/AllfilesForProgram/" + fb.getFilename() + ".arff"));
+                breader = new BufferedReader(new FileReader("C:/Users/Yomna/Desktop/SD/SD/AllfilesForProgram/" + fb.getFilename() + ".arff"));
             }
             train = new Instances(breader);
             train.setClassIndex(train.numAttributes() - 1);
