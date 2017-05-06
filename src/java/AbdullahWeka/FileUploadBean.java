@@ -206,7 +206,7 @@ import java.io.File;
                     
                             
             
-            fileAttributes  = new File("C/Users/Yomna/Documents/NetBeansProjects/ELCD/web/ToDownloadFiles/" + filename + ".txt");
+            fileAttributes  = new File("C:/Users/Yomna/Documents/NetBeansProjects/ELCD/web/ToDownloadFiles/" + filename + ".txt");
             fop2 = new FileOutputStream(fileAttributes);
             if (!fileAttributes.exists()) {
                 fileAttributes.createNewFile();

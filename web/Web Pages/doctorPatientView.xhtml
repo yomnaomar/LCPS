@@ -29,45 +29,49 @@
                     <section class="sectionTop"><h:form><h:commandButton class="button" id="ai" value="Algorithm Analysis" action="doctorPatientAI.xhtml"/></h:form></section>
                     <section class="sectionLeft">
                         <h2>Tests</h2>
-                        <h:dataTable value="#{doctorpatientview.tests}" var="test" headerClass="tableheader" rowClasses="oddrow, evenrow">
-                            <h:column>
-                                <f:facet name="header">Test Name</f:facet>
-                                <h:outputText value="#{test.name}"/>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">Test Result</f:facet>
-                                <h:outputText value="#{test.result}"/>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">Is the Result Fatal?</f:facet>
-                                <h:outputText value="#{test.isFatal}"/>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">Delete Test?</f:facet>
-                                <h:selectBooleanCheckbox value="#{doctorpatientview.deletedTests[test.geneID]}"/>
-                            </h:column>
-                        </h:dataTable>
-                        <h:outputText value="#{doctorpatientview.testErrorMsg}"/>
-                        <br/><h:commandButton class="button" id="deleteTests" value="Delete Tests" actionListener="#{doctorpatientview.deleteTests()}"/>
+                        <h:form>
+                            <h:dataTable value="#{doctorpatientview.tests}" var="test" headerClass="tableheader" rowClasses="oddrow, evenrow">
+                                <h:column>
+                                    <f:facet name="header">Test Name</f:facet>
+                                    <h:outputText value="#{test.name}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">Test Result</f:facet>
+                                    <h:outputText value="#{test.result}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">Is the Result Fatal?</f:facet>
+                                    <h:outputText value="#{test.isFatal}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">Delete Test?</f:facet>
+                                    <h:selectBooleanCheckbox value="#{doctorpatientview.deletedTests[test.geneID]}"/>
+                                </h:column>
+                            </h:dataTable>
+                            <h:outputText value="#{doctorpatientview.testErrorMsg}"/>
+                            <br/><h:commandButton class="button" id="deleteTests" value="Delete Tests" actionListener="#{doctorpatientview.deleteTests()}"/>
+                        </h:form>
                     </section>
                     <section class="sectionRight">
                         <h2>Comments</h2>
-                        <h:dataTable value="#{doctorpatientview.comments}" var="comment" headerClass="tableheader" rowClasses="oddrow, evenrow">
-                            <h:column>
-                                <f:facet name="header">Date Added</f:facet>
-                                <h:outputText value="#{comment.dateAdded}"/>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">Comment</f:facet>
-                                <h:outputText value="#{comment.comment}"/>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">Delete Test?</f:facet>
-                                <h:selectBooleanCheckbox value="#{doctorpatientview.deletedComments[comment.commentID]}"/>
-                            </h:column>
-                        </h:dataTable>
-                        <h:outputText value="#{doctorpatientview.commentErrorMsg}"/>
-                        <br/><h:commandButton class="button" id="deleteTests" value="Delete Tests" actionListener="#{doctorpatientview.deleteComments()}"/>
+                        <h:form>
+                            <h:dataTable value="#{doctorpatientview.comments}" var="comment" headerClass="tableheader" rowClasses="oddrow, evenrow">
+                                <h:column>
+                                    <f:facet name="header">Date Added</f:facet>
+                                    <h:outputText value="#{comment.dateAdded}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">Comment</f:facet>
+                                    <h:outputText value="#{comment.comment}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">Delete Test?</f:facet>
+                                    <h:selectBooleanCheckbox value="#{doctorpatientview.deletedComments[comment.commentID]}"/>
+                                </h:column>
+                            </h:dataTable>
+                            <h:outputText value="#{doctorpatientview.commentErrorMsg}"/>
+                            <br/><h:commandButton class="button" id="deleteTests" value="Delete Tests" actionListener="#{doctorpatientview.deleteComments()}"/>
+                        </h:form>
                     </section>
                     <section class="sectionBottom">
                         <h2>Add a New Comment</h2>
